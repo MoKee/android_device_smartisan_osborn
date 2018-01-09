@@ -89,6 +89,10 @@ on post-fs-data
     mkdir /data/misc/seemp 0700 system system
     mkdir /data/misc/tloc 0700 system drmrpc
 
+    # Generate BT address
+    mkdir /data/vendor/mac_addr system system
+    start bt-mac-generator
+
 on boot
     start rmt_storage
     start rfs_access
@@ -142,6 +146,13 @@ on boot
 on property:sys.boot_completed=1
     # Set BFQ I/O scheduler
     setprop sys.io.scheduler "bfq"
+
+service bt-mac-generator /vendor/bin/bt-mac-generator
+    class main
+    user bluetooth
+    group bluetooth
+    oneshot
+    disabled
 
 #Peripheral manager
 service per_mgr /system/vendor/bin/pm-service
