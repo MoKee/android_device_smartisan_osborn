@@ -66,4 +66,7 @@
          config to 7. -->
     <integer name="config_deviceHardwareWakeKeys">96</integer>
 
+    <!-- Whether device has screen with higher aspect ratio -->
+    <bool name="config_haveHigherAspectRatioScreen">true</bool>
+
 </resources>
