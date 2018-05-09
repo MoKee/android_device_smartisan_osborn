@@ -16,8 +16,23 @@
 
 package com.qualcomm.qti.internal.telephony;
 
+import android.content.Context;
+import android.telephony.Rlog;
+
+import com.android.internal.telephony.CommandsInterface;
+import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.TelephonyComponentFactory;
 
 public class QtiTelephonyComponentFactory extends TelephonyComponentFactory {
 
+    @Override
+    public void makeExtTelephonyClasses(Context context,
+            Phone[] phones, CommandsInterface[] commandsInterfaces) {
+        Rlog.d(LOG_TAG, "makeMKExtTelephonyClasses");
+        try {
+            MKExtTelephony.init(context);
+        } catch (NoClassDefFoundError e) {
+            Rlog.e(LOG_TAG, "Error creating MKExtTelephony", e);
+        }
+    }
 }
