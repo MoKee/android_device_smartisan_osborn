@@ -29,15 +29,21 @@ import init.qcom.usb.rc
 import init.msm.usb.configfs.rc
 import init.target.rc
 import init.qcom.factory.rc
-import init.qcom.test.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
 
 on init
+    # Load persistent dm-verity state
+    verity_load_state
+
     # Set permissions for persist partition
     mkdir /persist 0771 root system
+
+    # Set permissions for dump partition
+    mkdir /klogdump 0777 root root
+    mkdir /ramdump 0777 root root
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
@@ -51,6 +57,11 @@ on init
     chown root system /sys/fs/cgroup/memory/tasks
     chmod 0660 /sys/fs/cgroup/memory/tasks
 
+    chown root factory /dev/block/mmcblk0p7
+    chown root factory /dev/block/mmcblk0p8
+    chmod 0660 /dev/block/mmcblk0p7
+    chmod 0660 /dev/block/mmcblk0p8
+
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
     restorecon /sys/kernel/debug/tracing/trace_marker
@@ -61,7 +72,7 @@ on early-boot
     # Allow subsystem (modem etc) debugging
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_cdsp/boot 1
-    write /sys/kernel/boot_slpi/boot 1
+    #write /sys/kernel/boot_slpi/boot 1
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
 on boot
@@ -158,26 +169,6 @@ on boot
     write /proc/sys/net/core/wmem_max  8388608
 
     #To allow interfaces to get v6 address when tethering is enabled
-    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -189,7 +180,7 @@ on boot
 
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
-    write /proc/sys/kernel/printk "6 6 1 7"
+    #write /proc/sys/kernel/printk "6 6 1 7"
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
@@ -198,14 +189,21 @@ on boot
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
     # Allow access to emmc rawdump block partition and dload sysfs node
-    chown root system /dev/block/bootdevice/by-name/rawdump -p /dev/block/
-    chmod 0660 /dev/block/bootdevice/by-name/rawdump -p /dev/block/
     chown root system /sys/kernel/dload/emmc_dload
     chmod 0660 /sys/kernel/dload/emmc_dload
     chown root system /dev/block/bootdevice/by-name/ramdump -p /dev/block/
     chmod 0660 /dev/block/bootdevice/by-name/ramdump -p /dev/block/
     chown root system /sys/kernel/dload/dload_mode
     chmod 0660 /sys/kernel/dload/dload_mode
+
+    # Adjust parameters for dm-verity device
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+    #ddr_freq dynamic change interface
+    chown system system /sys/module/kernel/ddr_freq_en/ddr_freq_en
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -222,6 +220,7 @@ on post-fs-data
 
     #Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
+    mkdir /data/misc/camera/raw/ 0770 camera camera
 
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -271,6 +270,7 @@ on post-fs-data
 
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
+    chmod 0666 /sys/class/graphics/fb0/msm_fb_ie_level
     chown root system /persist
     chmod 0771 /persist
     chown system system /persist/WCNSS_qcom_wlan_nv.bin
@@ -362,6 +362,9 @@ on post-fs-data
     chown radio radio /data/misc/radio/db_check_done
     chmod 0660 /data/misc/radio/db_check_done
 
+    #wanjl set adsp subsys restart level
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level SYSTEM
+
     # qti-logkit data
     mkdir /data/misc/qti-logkit/ 0771 system system
     mkdir /data/misc/qti-logkit/shared-privileged/ 2770 system system
@@ -381,6 +384,11 @@ on post-fs-data
     # create QDMA related dirs
     mkdir /data/misc/qdmastats 0700 system system
     mkdir /data/misc/qdma 0770 system system
+    mkdir /data/misc/logd 0700 logd log
+    symlink /data/misc/logd /data/logs
+
+    # WAPI
+    mkdir /data/misc/wapi_certificate 0770 system wifi
 
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
@@ -394,6 +402,18 @@ service perfd /system/vendor/bin/perfd
    group root readproc
    disabled
    socket perfd seqpacket 0666 root system
+
+service scitd /system/bin/scitd
+    class late_start
+    socket scitd stream 0660 system factory
+    user root
+    group root
+
+service sdbd /system/bin/sdbd
+    class main
+    socket sdbd stream 0660 root root
+    user system
+    group system
 
 service iop /system/bin/iop
     class main
@@ -433,12 +453,30 @@ on property:persist.sys.ssr.restart_level=*
     start ssr_setup
 
 on property:persist.sys.ssr.enable_ramdumps=1
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level related
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
-    mkdir /data/ramdump 770 system system
+    mkdir /data/ramdump 777 system system
     start ss_ramdump
+
+on property:persist.sys.ssr.upload_dump=0
+    write /sys/module/subsystem_restart/parameters/upload_dump 0
+
+on property:persist.sys.ssr.upload_dump=1
+    write /sys/module/subsystem_restart/parameters/upload_dump 1
+
 
 on property:persist.sys.ssr.enable_ramdumps=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level system
+    stop ss_ramdump
 
 on property:sys.boot_completed=1
     exec u:r:qti_init_shell:s0 -- /init.qcom.crashdata.sh
@@ -454,6 +492,12 @@ on property:sys.boot_completed=1
 on property:persist.radio.atfwd.start=false
     stop atfwd
 
+# SMARTISAN_BEGIN: (CCM4009: Default disable ATFWD daemon)
+# 2017-04-28 houxiaofei: Default disable atfwd daemon, and controlled by prop. M0162771
+on property:radio.atfwd.start=true
+    start atfwd
+# SMARTISAN_END: (CCM4009: Default disable ATFWD daemon)
+
 on property:radio.atfwd.start=false
     stop atfwd
 
@@ -465,11 +509,11 @@ on property:persist.debug.trace=1
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
-on property:bluetooth.dun.status=running
-    start bt-dun
+#on property:bluetooth.dun.status=running
+   #start bt-dun
 
-on property:bluetooth.dun.status=stopped
-    stop bt-dun
+#on property:bluetooth.dun.status=stopped
+    #stop bt-dun
 
 on property:ro.bluetooth.ftm_enabled=true
     start ftmd
@@ -495,6 +539,13 @@ service qcom-c_main-sh /system/bin/sh /init.class_main.sh
     class main
     user root
     oneshot
+
+on verity-logging
+    exec u:r:slideshow:s0 -- /sbin/slideshow warning warning/verity_yellow warning/logo
+
+on verity-logging-error
+    exec u:r:slideshow:s0 -- /sbin/slideshow error warning/verity_red warning/logo
+    powerctl "reboot,recovery"
 
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
@@ -688,7 +739,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -702,7 +753,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -dd \
+    -O/data/misc/wifi/sockets \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
@@ -902,10 +953,20 @@ on property:sys.boot_completed=1
     start qcom-post-boot
     start qti-testscripts
 
+#SMARTISAN_BEGIN:(CCM5019:CMCC LTE throughput on b39 is poor )
+#2017-10-30 huangrunxi:turn up rps_cpus and tcp_limit_output_bytes like REF. M0193524
+    write /proc/sys/net/ipv4/tcp_limit_output_bytes 506072
+    write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus 7
+#SMARTISAN_END:(CCM5019:CMCC LTE throughput on b39 is poor )
+
 service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
+# SMARTISAN_BEGIN: (CCM4009: Default disable ATFWD daemon)
+# 2017-04-28 houxiaofei: Default disable atfwd daemon, and controlled by prop. M0162771
+    disabled
+# SMARTISAN_END: (CCM4009: Default disable ATFWD daemon)
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
@@ -990,6 +1051,21 @@ service charger /charger
     class charger
     group system graphics
     seclabel u:r:healthd:s0
+
+service nds /system/xbin/nds
+    class late_start
+    user root
+    group system wifi
+    disabled
+    seclabel u:r:nds:s0
+	oneshot
+
+on property:net.wlan.fbstatus=ON
+    start nds
+
+on property:net.wlan.fbstatus=OFF
+    stop nds
+
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -1119,7 +1195,7 @@ service seemp_healthd /system/vendor/bin/seemp_healthd
     group system
 
 on charger
-   setprop persist.sys.usb.config mass_storage
+    setprop persist.sys.usb.config charging,adb
 
 #add poweroffhandler
 service poweroffhandler /system/bin/poweroffhandler
@@ -1128,17 +1204,6 @@ service poweroffhandler /system/bin/poweroffhandler
     group graphics audio
     disabled
     oneshot
-
-# Logcat dump daemon, dumps logs to logdump partition
-service logdumpd /system/bin/logcat -b all -v threadtime -D -w /dev/block/bootdevice/by-name/logdump
-    class core
-    writepid /dev/cpuset/system-background/tasks
-    seclabel u:r:logdumpd:s0
-    disabled
-
-# Logdumpd is enabled only for userdebug non-perf build
-on property:ro.logdumpd.enabled=1
-    start logdumpd
 
 service qdmastatsd /system/bin/qdmastatsd
     class late_start
@@ -1149,3 +1214,25 @@ service time_daemon /system/bin/time_daemon
     class main
     user root
     group root
+on property:sys.sdb.unlock=*
+    restart scitd
+
+on property:init.svc.scitd=running
+#   chown root factory /dev/block/mmcblk0p14
+#   chown root factory /dev/block/mmcblk0p15
+#   chmod 0660 /dev/block/mmcblk0p14
+#   chmod 0660 /dev/block/mmcblk0p15
+
+    chown system factory /sys/devices/virtual/timed_output/vibrator/enable
+    chown system factory /sys/class/leds/led:torch_0/brightness
+    chown system factory /sys/class/leds/led:torch_1/brightness
+    chown system factory /sys/class/leds/led:switch_0/brightness
+    chown system factory /sys/class/leds/led:switch_1/brightness
+    chown system factory /sys/class/leds/red/brightness
+
+    chmod 0664 /sys/devices/virtual/timed_output/vibrator/enable
+    chmod 0664 /sys/class/leds/led:torch_0/brightness
+    chmod 0664 /sys/class/leds/led:torch_1/brightness
+    chmod 0664 /sys/class/leds/led:switch_0/brightness
+    chmod 0664 /sys/class/leds/led:switch_1/brightness
+    chmod 0664 /sys/class/leds/red/brightness

@@ -321,6 +321,15 @@ case "$target" in
 		;;
 esac
 
+cdromname="/system/etc/cdrom_install.iso"
+platformver=`cat /sys/devices/soc0/hw_platform`
+case "$target" in
+	"sdm660")
+		echo "mounting usbcdrom lun"
+		echo $cdromname > /config/usb_gadget/g1/functions/mass_storage.0/lun.0/file
+		chmod 0444 /config/usb_gadget/g1/functions/mass_storage.0/lun.0/file
+esac
+
 #
 # Initialize RNDIS Diag option. If unset, set it to 'none'.
 #

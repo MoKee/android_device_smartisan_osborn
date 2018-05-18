@@ -34,6 +34,7 @@ LOG_TAG="qcom-bluetooth"
 LOG_NAME="${0}:"
 
 hciattach_pid=""
+bdaddr=""
 
 loge ()
 {
@@ -64,6 +65,10 @@ config_bt ()
 {
   baseband=`getprop ro.baseband`
   target=`getprop ro.board.platform`
+
+  bdaddr=`cat /persist/bd_addr.txt`
+  setprop ro.bluetooth.macaddr $bdaddr
+
   if [ -f /sys/devices/soc0/soc_id ]; then
     soc_hwid=`cat /sys/devices/soc0/soc_id`
   else
@@ -105,7 +110,7 @@ config_bt ()
         setprop ro.bluetooth.sap true
         case $target in
           "apq8084")
-              setprop ro.bluetooth.dun true
+              setprop ro.bluetooth.dun false
               logi "Enabling BT-DUN for APQ8084"
               ;;
           *)
@@ -121,7 +126,7 @@ config_bt ()
         setprop ro.qualcomm.bluetooth.ftp true
         setprop ro.qualcomm.bluetooth.nap true
         setprop ro.bluetooth.sap true
-        setprop ro.bluetooth.dun true
+        setprop ro.bluetooth.dun false
         case $btsoc in
           "ath3k")
               setprop ro.qualcomm.bluetooth.map false
@@ -140,7 +145,7 @@ config_bt ()
         setprop ro.qualcomm.bluetooth.map true
         setprop ro.qualcomm.bluetooth.nap true
         setprop ro.bluetooth.sap true
-        setprop ro.bluetooth.dun true
+        setprop ro.bluetooth.dun false
         ;;
   esac
 

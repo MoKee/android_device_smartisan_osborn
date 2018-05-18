@@ -41,6 +41,7 @@ start_sensors()
 
         start sensors
     fi
+	chmod  764 /persist/sensors/sns.reg
 }
 
 start_sensors
