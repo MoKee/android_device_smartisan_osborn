@@ -28,6 +28,9 @@
 #
 
 on early-init
+    mkdir /firmware 0771 system system
+    mkdir /bt_firmware 0771 system system
+    mkdir /dsp 0771 media media
 
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
@@ -43,9 +46,15 @@ on fs
     mount_all fstab.qcom
     swapon_all fstab.qcom
 
+    start time_daemon
+    check_fsghead
+
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
+
+    wait /dev/block/bootdevice/by-name/cache
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
 
     wait /dev/block/bootdevice/by-name/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
@@ -54,6 +63,17 @@ on fs
     restorecon_recursive /persist
     write /sys/kernel/boot_adsp/boot 1
 
+    wait /dev/block/bootdevice/by-name/dsp
+    mount ext4 /dev/block/bootdevice/by-name/dsp /dsp ro nosuid nodev barrier=1
+
+    wait /dev/block/bootdevice/by-name/modem
+    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
+
+    wait /dev/block/bootdevice/by-name/bluetooth
+    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0
+
+    exec u:r:init_fsg:s0 -- /init.fsg.sh
+
 on post-fs
     start qseecomd
     exec - root root root -- /system/bin/init.qti.qseecomd.sh
@@ -61,6 +81,7 @@ on post-fs
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+    write /proc/sys/kernel/hung_task_timeout_secs 120
 
 on post-fs-data
     mkdir /data/tombstones/modem 0771 system system
@@ -71,20 +92,27 @@ on post-fs-data
     mkdir /data/misc/seemp 0700 system system
     mkdir /data/misc/tloc 0700 system drmrpc
     mkdir /persist/qti_fp 0700 system system
+    mkdir /data/misc/logd 0700 logd log
+    symlink /data/misc/logd /data/logs
 
 # For cpusets initialize for Silver Only first and then Silver + Gold
 # Silver Only configuration cannot work with 0-7
 on boot
     start rmt_storage
     start rfs_access
-    write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-3
-    write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 0-3
+    mkdir /dev/cpuset/dex2oat
+    write /dev/cpuset/dex2oat/cpus 0-4
+    write /dev/cpuset/dex2oat/mems 0
+    chown system system /dev/cpuset/dex2oat
+    chown system system /dev/cpuset/dex2oat/tasks
+    chmod 0666 /dev/cpuset/dex2oat/tasks
+
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/bg_3rd_app/cpus 2-3
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-5
+    write /dev/cpuset/foreground/boost/cpus 0-5
     ####Regionalization config and prop files####
     chmod 0644 /persist/speccfg/spec
     chmod 0644 /persist/speccfg/devicetype
@@ -102,6 +130,22 @@ on boot
     chown system system /persist/speccfg/vendor_persist.prop
     chown system system /persist/speccfg/submask
     chown system system /persist/speccfg/partition
+    chmod 0644 /dev/goodix_fp
+    chown system system /dev/goodix_fp
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/hw_reset
+    chown system system /sys/bus/platform/devices/soc:fpc1020/hw_reset
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/irq
+    chown system system /sys/bus/platform/devices/soc:fpc1020/irq
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/regulator_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/regulator_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/device_prepare
+    chown system system /sys/bus/platform/devices/soc:fpc1020/device_prepare
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/clk_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/clk_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/pinctl_set
+    chown system system /sys/bus/platform/devices/soc:fpc1020/pinctl_set
 
 #Peripheral manager
 service per_mgr /system/bin/pm-service
@@ -110,11 +154,22 @@ service per_mgr /system/bin/pm-service
     group system
     ioprio rt 4
 
+#fingerprint service
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group system input
+
 service per_proxy /system/bin/pm-proxy
     class core
     user system
     group system
     disabled
+
+service ifaad /system/bin/ifaad
+    class late_start
+    user  system
+    group system
 
 on property:init.svc.per_mgr=running
     start per_proxy
@@ -405,10 +460,13 @@ on property:init.svc.zygote=restarting
     stop ppd
 
 on charger
-    load_system_props
+    wait /dev/block/bootdevice/by-name/system
+    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    setprop sys.usb.configfs 0
     start qcom-post-boot
     start hvdcp_opti
     setprop sys.usb.configfs 1
+    start thermal-engine
 
 #
 #service nqs /system/bin/nqs

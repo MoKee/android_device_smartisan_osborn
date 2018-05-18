@@ -17,11 +17,6 @@ persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 
-#
-# Set network mode to (T/L/G/W/1X/EVDO, T/G/W/L) for 7+5 mode device on DSDS mode
-#
-ro.telephony.default_network=22,20
-
 debug.sf.hw=1
 debug.gralloc.enable_fb_ubwc=1
 dalvik.vm.heapsize=36m
@@ -59,6 +54,8 @@ vidc.enc.disable.pq=false
 # Additional buffers shared between Camera and Video
 vidc.enc.dcvs.extra-buff-count=2
 
+#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE
+mm.enable.qcom_parser=1048559
 
 #
 # system props for the data modules
@@ -81,16 +78,31 @@ bt.max.hfpclient.connections=1
 persist.bt.a2dp.aac_disable=true
 
 # System property for cabl
-ro.qualcomm.cabl=2
+ro.qualcomm.cabl=0
 
 #
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
 
+# SMARTISAN_BEGIN (CCM2005:CDMA SMS sent over TCH)
+# 2017-5-15 liulu:create the feature M0164744
+# 2017-10-11 guochenggang: porting to osborn-common M0191861
+# CDMA sms sent over TCH M0164744
+persist.radio.force_on_dc=true
+# SMARTISAN_END (CCM2005:CDMA SMS sent over TCH)
+
+# SMARTISAN_BEGIN (CCM5021:Enable modem save power property)
+# 2017-12-27 liulu:enable the property M0213013
+persist.radio.add_power_save=1
+# SMARTISAN_END (CCM5021:Enable modem save power property)
+
 #Simulate sdcard on /data/media
 #
 persist.fuse_sdcard=true
+
+#set default sdcardfs
+persist.sys.sdcardfs=force_off
 
 #system prop for Bluetooth SOC type
 qcom.bluetooth.soc=cherokee
@@ -194,3 +206,51 @@ ro.memperf.lib=libmemperf.so
 
 #set maximum supported adapter voltage
 persist.charger.max_voltage_mv=9000
+
+#Headset button input device name
+ro.system.headsetinput=sdm660-snd-card-skush Button Jack
+
+#enable drm service
+drm.service.enabled=true
+
+# Multisim config
+persist.radio.multisim.config=dsds
+# Default network mode
+ro.telephony.default_network=22,22
+# Ap defined ecclist
+ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
+# Redirecting party number feature
+persist.radio.redir_party_num=0
+# Enable RAT in operator searching result
+persist.radio.rat_on=combine
+#Report PS operator name for SRLTE
+persist.radio.sglte.eons_domain=ps
+# Enable report reject cause when REG rejected permanently
+persist.radio.lte_vrte_ltd=1
+# Default APN protocal
+ro.radio.apn.protocal=IPV4V6
+# bar fake cell feature
+ro.radio.bar.fake.cell.feature=1
+
+#Enable IMS
+persist.radio.calls.on.ims=true
+persist.radio.jbims=1
+persist.radio.vrte_logic=1
+
+# SMARTISAN_BEGIN (CCM2016:FAKE BASE STATION DETECTION)
+# 2017-06-27 wangyun:create the feature M0170767
+# 2017-11-17 guochenggang: enable the property
+# Fake Base Station Detection M0170767
+persist.radio.bar_fake_gcell=true
+# SMARTISAN_END (CCM2016:FAKE BASE STATION DETECTION)
+
+# SMARTISAN_BEGIN (CCM5012:RIL CLIR RETURN)
+# 2017-09-13 hubin:added. M0186977
+persist.radio.facnotsup_as_nonw=1
+# SMARTISAN_END (CCM5012:RIL CLIR RETURN)
+
+#nfc fw update not allowed by default
+persist.fw.update.allowed=0
+
+# CA config
+ro.radio.ca.enable=true
