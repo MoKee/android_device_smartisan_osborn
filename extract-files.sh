@@ -59,4 +59,12 @@ setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" false "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 
+function fix_fpc () {
+    sed -i \
+        's/\x00fpcfingerprint\x00/\x00fingerprint\x00\x00\x00\x00/' \
+        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/"$1"
+}
+
+fix_fpc lib64/hw/fingerprint.fpc.so
+
 "$MY_DIR"/setup-makefiles.sh
