@@ -66,9 +66,6 @@ config_bt ()
   baseband=`getprop ro.baseband`
   target=`getprop ro.board.platform`
 
-  bdaddr=`cat /persist/bd_addr.txt`
-  setprop ro.bluetooth.macaddr $bdaddr
-
   if [ -f /sys/devices/soc0/soc_id ]; then
     soc_hwid=`cat /sys/devices/soc0/soc_id`
   else
