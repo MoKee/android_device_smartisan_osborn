@@ -328,6 +328,7 @@ PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
     init.qcom.audio.sh \
     init.qcom.bt.sh \
+    init.qcom.bt.addr.sh \
     init.qcom.class_core.sh \
     init.qcom.coex.sh \
     init.qcom.crashdata.sh \
