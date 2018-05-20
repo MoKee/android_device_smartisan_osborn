@@ -87,8 +87,8 @@ etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
+-vendor/lib/libdualcameraddm.so
 bin/mm-qcamera-daemon
-lib/hw/camera.sdm660.so
 lib/libMMBeauty.so
 lib/libSensorManagerHAL.so:
 lib/libarcsoft_beautyshot.so
@@ -99,17 +99,13 @@ lib/libarcsoft_picselfie_algorithm.so
 lib/libarcsoft_refocus_sm.so
 lib/libarcsoft_smart_denoise.so
 lib/libmm-qcamera.so
-lib/libmmcamera_interface.so
 lib/libmmcv.so
 lib/libmmcv_sm.so
-lib/libmmjpeg_interface.so
-lib/libmmlib2d_interface.so
 lib/libmms_gyro_vstab.so
 lib/libmms_gyro_vstab_auth.so
 lib/libmms_hal_vstab.so
 lib/libmms_warper_vstab.so
 lib/libmpbase.so
-lib/libqomx_core.so
 lib/libsmart_hdr.so
 lib/libsmcv.so
 lib/libtt_panorama.so
@@ -117,7 +113,6 @@ lib/libyuvutils.so
 lib/sensors.hal.tof.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libchromaflash.so
-vendor/lib/libdualcameraddm.so
 vendor/lib/libedge_smooth_hvx_stub.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjni_dualcamera.so

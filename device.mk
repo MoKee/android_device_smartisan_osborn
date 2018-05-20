@@ -196,6 +196,13 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    camera.sdm660_32 \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    libmmlib2d_interface \
+    libqomx_core
+
+PRODUCT_PACKAGES += \
     Snap
 
 # Connectivity Engine support (CNE)
