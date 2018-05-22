@@ -368,6 +368,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.sdm660
 
+# SOTER (Fingerprint support for WeChat Payment)
+PRODUCT_PACKAGES += \
+    soter
+
+PRODUCT_BOOT_JARS += \
+    soter
+
 # Verity
 PRODUCT_PACKAGES += \
     verity_key
