@@ -640,6 +640,15 @@ vendor/lib64/libsdm-diag.so
 vendor/lib64/libsdmextension.so
 vendor/lib64/libtinyxml2_1.so
 
+# IFAA (Fingerprint support for Alipay)
+-framework/ifaa_fw.jar
+bin/ifaad
+lib/libifaa_daemon.so
+lib/libifaa_jni.so
+lib64/lib_ifaa_tac.so
+lib64/libifaa_daemon.so
+lib64/libifaa_jni.so
+
 # Keystore
 vendor/lib/hw/keystore.sdm660.so
 vendor/lib64/hw/keystore.sdm660.so
