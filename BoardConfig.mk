@@ -190,7 +190,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
-TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/4-004b/input/input1/wake_gesture"
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
