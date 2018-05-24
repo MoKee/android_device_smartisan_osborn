@@ -2,6 +2,7 @@
  * Copyright (C) 2014, 2017 The  Linux Foundation. All rights reserved.
  * Not a contribution
  * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2008 The MoKee Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +21,6 @@
 // #define LOG_NDEBUG 0
 
 #include <cutils/log.h>
-#include <cutils/properties.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,19 +34,13 @@
 
 #include <hardware/lights.h>
 
-#ifndef DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS
-#define DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS 0x80
-#endif
-
 /******************************************************************************/
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
+static struct light_state_t g_attention;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
-static int g_last_backlight_mode = BRIGHTNESS_MODE_USER;
-static int g_attention = 0;
-static int g_brightness_max = 0;
 
 char const*const RED_LED_FILE
         = "/sys/class/leds/red/brightness";
@@ -60,9 +54,6 @@ char const*const BLUE_LED_FILE
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
-char const*const BUTTON_FILE
-        = "/sys/class/leds/button-backlight/brightness";
-
 char const*const RED_BLINK_FILE
         = "/sys/class/leds/red/blink";
 
@@ -71,9 +62,6 @@ char const*const GREEN_BLINK_FILE
 
 char const*const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
-
-char const*const PERSISTENCE_FILE
-        = "/sys/class/graphics/fb0/msm_fb_persist_mode";
 
 /**
  * device methods
@@ -127,32 +115,12 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
-    unsigned int lpEnabled =
-        state->brightnessMode == BRIGHTNESS_MODE_LOW_PERSISTENCE;
     if(!dev) {
         return -1;
     }
 
     pthread_mutex_lock(&g_lock);
-    // Toggle low persistence mode state
-    if ((g_last_backlight_mode != state->brightnessMode && lpEnabled) ||
-        (!lpEnabled &&
-         g_last_backlight_mode == BRIGHTNESS_MODE_LOW_PERSISTENCE)) {
-        if ((err = write_int(PERSISTENCE_FILE, lpEnabled)) != 0) {
-            ALOGE("%s: Failed to write to %s: %s\n", __FUNCTION__,
-                   PERSISTENCE_FILE, strerror(errno));
-        }
-        if (lpEnabled != 0) {
-            brightness = DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS;
-        }
-    }
-
-    g_last_backlight_mode = state->brightnessMode;
-
-    if (!err) {
-        err = write_int(LCD_FILE, brightness);
-    }
-
+    err = write_int(LCD_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
     return err;
 }
@@ -212,15 +180,15 @@ set_speaker_light_locked(struct light_device_t* dev,
         if (red) {
             if (write_int(RED_BLINK_FILE, blink))
                 write_int(RED_LED_FILE, 0);
-    }
+        }
         if (green) {
             if (write_int(GREEN_BLINK_FILE, blink))
                 write_int(GREEN_LED_FILE, 0);
-    }
+        }
         if (blue) {
             if (write_int(BLUE_BLINK_FILE, blink))
                 write_int(BLUE_LED_FILE, 0);
-    }
+        }
     } else {
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
@@ -235,7 +203,9 @@ handle_speaker_battery_locked(struct light_device_t* dev)
 {
     if (is_lit(&g_battery)) {
         set_speaker_light_locked(dev, &g_battery);
-    } else {
+    } else if (is_lit(&g_attention)) {
+        set_speaker_light_locked(dev, &g_attention);
+    } else if (is_lit(&g_notification)) {
         set_speaker_light_locked(dev, &g_notification);
     }
 }
@@ -267,28 +237,10 @@ set_light_attention(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     pthread_mutex_lock(&g_lock);
-    if (state->flashMode == LIGHT_FLASH_HARDWARE) {
-        g_attention = state->flashOnMS;
-    } else if (state->flashMode == LIGHT_FLASH_NONE) {
-        g_attention = 0;
-    }
+    g_attention = *state;
     handle_speaker_battery_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
-}
-
-static int
-set_light_buttons(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int err = 0;
-    if(!dev) {
-        return -1;
-    }
-    pthread_mutex_lock(&g_lock);
-    err = write_int(BUTTON_FILE, state->color & 0xFF);
-    pthread_mutex_unlock(&g_lock);
-    return err;
 }
 
 /** Close the lights device */
@@ -315,14 +267,12 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     int (*set_light)(struct light_device_t* dev,
             struct light_state_t const* state);
 
-    if (0 == strcmp(LIGHT_ID_BACKLIGHT, name)) {
+    if (0 == strcmp(LIGHT_ID_BACKLIGHT, name))
         set_light = set_light_backlight;
-    } else if (0 == strcmp(LIGHT_ID_BATTERY, name))
+    else if (0 == strcmp(LIGHT_ID_BATTERY, name))
         set_light = set_light_battery;
     else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
         set_light = set_light_notifications;
-    else if (0 == strcmp(LIGHT_ID_BUTTONS, name))
-        set_light = set_light_buttons;
     else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
         set_light = set_light_attention;
     else
@@ -360,6 +310,6 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
     .name = "lights Module",
-    .author = "Google, Inc.",
+    .author = "The Mokee Open Source Project",
     .methods = &lights_module_methods,
 };
