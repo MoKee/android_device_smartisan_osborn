@@ -319,4 +319,7 @@
         <item>10</item>
     </integer-array>
 
+    <!-- For performance and storage reasons, limit the number of fingerprints per user -->
+    <integer name="config_fingerprintMaxTemplatesPerUser">10</integer>
+
 </resources>
