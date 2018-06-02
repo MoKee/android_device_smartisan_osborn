@@ -138,9 +138,6 @@ persist.radio.add_power_save=1
 #
 persist.fuse_sdcard=true
 
-#set default sdcardfs
-persist.sys.sdcardfs=force_off
-
 #system prop for Bluetooth SOC type
 qcom.bluetooth.soc=cherokee
 
