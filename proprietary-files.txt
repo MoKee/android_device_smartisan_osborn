@@ -772,6 +772,7 @@ etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
 framework/QtiTelephonyServicelibrary.jar
 framework/embmslibrary.jar
+framework/qti-telephony-common.jar|81da49ec38bef842263e49730ff3c32effa19846
 vendor/bin/qti
 vendor/lib/libmdmdetect.so
 vendor/lib64/libconfigdb.so
