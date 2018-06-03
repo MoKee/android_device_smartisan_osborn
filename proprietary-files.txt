@@ -661,8 +661,8 @@ vendor/lib/hw/sound_trigger.primary.sdm660.so
 vendor/lib/libsmwrapper.so
 
 # Logic volume
--sbin/dm-tool:rootfs
--sbin/logic_volume:rootfs
+-sbin/dm-tool;rootfs
+-sbin/logic_volume;rootfs
 
 # Media
 -vendor/lib/libgpustats.so
