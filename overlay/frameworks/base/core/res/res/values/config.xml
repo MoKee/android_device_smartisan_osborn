@@ -30,12 +30,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-   <!-- The duration (in milliseconds) for the outgoing sms authorization request to timeout.-->
-   <integer name="config_sms_authorization_timeout_ms">15000</integer>
-
-   <!-- Enable SMS authorization support -->
-   <bool name="config_sms_authorization_enabled">true</bool>
-
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
 
