@@ -1,5 +1,6 @@
 /*
-Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+Copyright (c) 2013-2018, The Linux Foundation. All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -115,9 +116,12 @@ void IPACM_ConntrackListener::event_callback(ipa_cm_event_id evt,
 			IPACMDBG_H("Received event: %d with ifname: %s and address: 0x%x\n",
 							 evt, ((ipacm_event_iface_up *)data)->ifname,
 							 ((ipacm_event_iface_up *)data)->ipv4_addr);
-			CreateConnTrackThreads();
-			IPACM_ConntrackClient::UpdateUDPFilters(data, false);
-			IPACM_ConntrackClient::UpdateTCPFilters(data, false);
+			if(isWanUp())
+			{
+				CreateConnTrackThreads();
+				IPACM_ConntrackClient::UpdateUDPFilters(data, false);
+				IPACM_ConntrackClient::UpdateTCPFilters(data, false);
+			}
 			break;
 
 	 case IPA_NEIGH_CLIENT_IP_ADDR_ADD_EVENT:
@@ -139,7 +143,7 @@ void IPACM_ConntrackListener::event_callback(ipa_cm_event_id evt,
 int IPACM_ConntrackListener::CheckNatIface(
    ipacm_event_data_all *data, bool *NatIface)
 {
-	int fd = 0, len = 0, cnt, i, j;
+	int fd = 0, len = 0, cnt, i;
 	struct ifreq ifr;
 	*NatIface = false;
 
@@ -384,38 +388,32 @@ int IPACM_ConntrackListener::CreateConnTrackThreads(void)
 
 	if(isCTReg == false)
 	{
-		if(!tcp_thread)
+		ret = pthread_create(&tcp_thread, NULL, IPACM_ConntrackClient::TCPRegisterWithConnTrack, NULL);
+		if(0 != ret)
 		{
-			ret = pthread_create(&tcp_thread, NULL, IPACM_ConntrackClient::TCPRegisterWithConnTrack, NULL);
-			if(0 != ret)
-			{
-				IPACMERR("unable to create TCP conntrack event listner thread\n");
-				PERROR("unable to create TCP conntrack\n");
-				return -1;
-			}
-
-			IPACMDBG("created TCP conntrack event listner thread\n");
-			if(pthread_setname_np(tcp_thread, "tcp ct listener") != 0)
-			{
-				IPACMERR("unable to set thread name\n");
-			}
+			IPACMERR("unable to create TCP conntrack event listner thread\n");
+			PERROR("unable to create TCP conntrack\n");
+			goto error;
 		}
 
-		if(!udp_thread)
+		IPACMDBG("created TCP conntrack event listner thread\n");
+		if(pthread_setname_np(tcp_thread, "tcp ct listener") != 0)
 		{
-			ret = pthread_create(&udp_thread, NULL, IPACM_ConntrackClient::UDPRegisterWithConnTrack, NULL);
-			if(0 != ret)
-			{
-				IPACMERR("unable to create UDP conntrack event listner thread\n");
-				PERROR("unable to create UDP conntrack\n");
-				goto error;
-			}
+			IPACMERR("unable to set thread name\n");
+		}
 
-			IPACMDBG("created UDP conntrack event listner thread\n");
-			if(pthread_setname_np(udp_thread, "udp ct listener") != 0)
-			{
-				IPACMERR("unable to set thread name\n");
-			}
+		ret = pthread_create(&udp_thread, NULL, IPACM_ConntrackClient::UDPRegisterWithConnTrack, NULL);
+		if(0 != ret)
+		{
+			IPACMERR("unable to create UDP conntrack event listner thread\n");
+			PERROR("unable to create UDP conntrack\n");
+			goto error;
+		}
+
+		IPACMDBG("created UDP conntrack event listner thread\n");
+		if(pthread_setname_np(udp_thread, "udp ct listener") != 0)
+		{
+			IPACMERR("unable to set thread name\n");
 		}
 
 		isCTReg = true;
@@ -433,21 +431,18 @@ int IPACM_ConntrackListener::CreateNatThreads(void)
 
 	if(isNatThreadStart == false)
 	{
-		if(!udpcto_thread)
+		ret = pthread_create(&udpcto_thread, NULL, IPACM_ConntrackClient::UDPConnTimeoutUpdate, NULL);
+		if(0 != ret)
 		{
-			ret = pthread_create(&udpcto_thread, NULL, IPACM_ConntrackClient::UDPConnTimeoutUpdate, NULL);
-			if(0 != ret)
-			{
-				IPACMERR("unable to create udp conn timeout thread\n");
-				PERROR("unable to create udp conn timeout\n");
-				goto error;
-			}
+			IPACMERR("unable to create udp conn timeout thread\n");
+			PERROR("unable to create udp conn timeout\n");
+			goto error;
+		}
 
-			IPACMDBG("created upd conn timeout thread\n");
-			if(pthread_setname_np(udpcto_thread, "udp conn timeout") != 0)
-			{
-				IPACMERR("unable to set thread name\n");
-			}
+		IPACMDBG("created upd conn timeout thread\n");
+		if(pthread_setname_np(udpcto_thread, "udp conn timeout") != 0)
+		{
+			IPACMERR("unable to set thread name\n");
 		}
 
 		isNatThreadStart = true;
@@ -1043,9 +1038,9 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 	 nat_entry.ct = ct;
 	 nat_entry.type = type;
 
- 	 memset(&rule, 0, sizeof(rule));
-	 IPACMDBG("Received type:%d with proto:%d\n", type, l4proto);
-	 status = nfct_get_attr_u32(ct, ATTR_STATUS);
+	memset(&rule, 0, sizeof(rule));
+	IPACMDBG("Received type:%d with proto:%d\n", type, l4proto);
+	status = nfct_get_attr_u32(ct, ATTR_STATUS);
 
 	 /* Retrieve Protocol */
 	 rule.protocol = nfct_get_attr_u8(ct, ATTR_REPL_L4PROTO);
@@ -1095,47 +1090,40 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 #ifdef CT_OPT
 			HandleLan2Lan(ct, type, &rule);
 #endif
-			return;
+		 	IPACMDBG("Neither source Nor destination nat\n");
+		 	goto IGNORE;
 		}
-	 }
+	}
 
-	 if(IPS_DST_NAT == status || IPS_SRC_NAT == status)
-	 {
-		 PopulateTCPorUDPEntry(ct, status, &rule);
-		 rule.public_ip = wan_ipaddr;
-	 }
-	 else
-	 {
-		 IPACMDBG("Neither source Nor destination nat\n");
-		 goto IGNORE;
-	 }
+	PopulateTCPorUDPEntry(ct, status, &rule);
+	rule.public_ip = wan_ipaddr;
 
-	 if (rule.private_ip != wan_ipaddr)
-	 {
-		 isAdd = AddIface(&rule, &nat_entry.isTempEntry);
-		 if (!isAdd)
-		 {
-			 goto IGNORE;
-		 }
-	 }
-	 else
-	 {
-		 if (isStaMode)
-		 {
-			 IPACMDBG("In STA mode, ignore connections destinated to STA interface\n");
-			 goto IGNORE;
-		 }
+	if (rule.private_ip != wan_ipaddr)
+	{
+		isAdd = AddIface(&rule, &nat_entry.isTempEntry);
+		if (!isAdd)
+		{
+			goto IGNORE;
+		}
+	}
+	else
+	{
+		if (isStaMode)
+		{
+			IPACMDBG("In STA mode, ignore connections destinated to STA interface\n");
+			goto IGNORE;
+		}
 
-		 IPACMDBG("For embedded connections add dummy nat rule\n");
-		 IPACMDBG("Change private port %d to %d\n",
-				  rule.private_port, rule.public_port);
-		 rule.private_port = rule.public_port;
-	 }
+		IPACMDBG("For embedded connections add dummy nat rule\n");
+		IPACMDBG("Change private port %d to %d\n",
+				rule.private_port, rule.public_port);
+		rule.private_port = rule.public_port;
+	}
 
-	 CheckSTAClient(&rule, &nat_entry.isTempEntry);
-	 nat_entry.rule = &rule;
-	 AddORDeleteNatEntry(&nat_entry);
-	 return;
+	CheckSTAClient(&rule, &nat_entry.isTempEntry);
+	nat_entry.rule = &rule;
+	AddORDeleteNatEntry(&nat_entry);
+	return;
 
 IGNORE:
 	IPACMDBG_H("ignoring below Nat Entry\n");
