@@ -212,12 +212,6 @@ service per_mgr /system/vendor/bin/pm-service
     group system
     ioprio rt 4
 
-#fingerprint service
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group system input
-
 service per_proxy /system/vendor/bin/pm-proxy
     class core
     user system

@@ -71,11 +71,11 @@ etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Speaker_cal.acdb
 etc/acdbdata/adsp_avs_config.acdb|0612d11f476cabd68e7aba69c897d8139475b823
 
 # Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-bin/wcnss_filter
-vendor/lib/libbtnv.so
-vendor/lib64/libbtnv.so
+-vendor/lib/libbtnv.so
+-vendor/lib64/libbtnv.so
+bin/btnvtool:vendor/bin/btnvtool
+bin/hci_qcomm_init:vendor/bin/hci_qcomm_init
+bin/wcnss_filter:vendor/bin/wcnss_filter
 
 # Bluetooth firmware
 etc/firmware/nvm_tlv.bin
@@ -661,8 +661,8 @@ vendor/lib/hw/sound_trigger.primary.sdm660.so
 vendor/lib/libsmwrapper.so
 
 # Logic volume
--sbin/dm-tool:rootfs
--sbin/logic_volume:rootfs
+-sbin/dm-tool;rootfs
+-sbin/logic_volume;rootfs
 
 # Media
 -vendor/lib/libgpustats.so
