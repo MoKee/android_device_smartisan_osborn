@@ -44,6 +44,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using android::base::Trim;
 using android::base::ReadFileToString;
+using android::init::property_set;
 
 void init_fingerprint_properties()
 {
