@@ -36,10 +36,10 @@ PRODUCT_MODEL := OS105
 PRODUCT_GMS_CLIENTID_BASE := android-smartisan
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE="osborn" \
     PRODUCT_NAME="osborn" \
-    BUILD_FINGERPRINT="Android/osborn/osborn:7.1.1/NMF26X/1526921412:user/dev-keys" \
     PRIVATE_BUILD_DESC="osborn-user 7.1.1 NMF26X 45 dev-keys"
+
+BUILD_FINGERPRINT := Android/osborn/osborn:7.1.1/NMF26X/1526921412:user/dev-keys
 
 # Verity
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
