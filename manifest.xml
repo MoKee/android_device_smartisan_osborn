@@ -26,7 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <manifest version="1.0" type="device">
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -52,7 +52,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ISoundTriggerHw</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>android.hardware.media.omx</name>
         <transport>hwbinder</transport>
@@ -138,7 +138,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+   <!--  <hal format="hidl">
         <name>android.hardware.light</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -146,7 +146,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ILight</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>android.hardware.memtrack</name>
         <transport>hwbinder</transport>
@@ -156,7 +156,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>android.hardware.sensors</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -164,8 +164,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ISensors</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="hidl">
+    </hal> -->
+    <!-- <hal format="hidl">
         <name>android.hardware.camera.provider</name>
         <transport>hwbinder</transport>
         <version>2.4</version>
@@ -173,8 +173,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ICameraProvider</name>
             <instance>legacy/0</instance>
         </interface>
-    </hal>
-    <hal format="hidl">
+    </hal> -->
+    <!-- <hal format="hidl">
         <name>android.hardware.bluetooth</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -191,7 +191,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IBluetoothAudio</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>com.qualcomm.qti.ant</name>
         <transport>hwbinder</transport>
@@ -310,7 +310,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>slot2</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>android.hardware.gnss</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -327,7 +327,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>ILocHidlGnss</name>
             <instance>gnss_vendor</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>vendor.qti.hardware.radio.atcmdfwd</name>
         <transport>hwbinder</transport>
@@ -452,7 +452,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>android.hardware.wifi.supplicant</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -469,7 +469,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IWifi</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>vendor.qti.hardware.radio.ims</name>
            <transport>hwbinder</transport>
@@ -523,7 +523,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <!-- nfc -->
-    <hal format="hidl">
+   <!--  <hal format="hidl">
         <name>android.hardware.nfc</name>
         <transport>hwbinder</transport>
         <impl level="generic"></impl>
@@ -542,7 +542,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>INqNfc</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <!-- IMS UCE Service -->
     <hal format="hidl">
         <name>com.qualcomm.qti.uceservice</name>
@@ -597,7 +597,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <!-- WFD HAL Service -->
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>com.qualcomm.qti.wifidisplayhal</name>
         <transport>hwbinder</transport>
         <impl level="generic"></impl>
@@ -610,7 +610,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IDSManager</name>
             <instance>wifidisplaydshal</instance>
         </interface>
-    </hal>
+    </hal> -->
         <hal format="hidl">
         <name>android.hardware.drm</name>
         <transport>hwbinder</transport>
@@ -672,7 +672,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <!-- Tether Offload -->
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>android.hardware.tetheroffload.config</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -689,7 +689,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <name>IOffloadControl</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <!-- Factory HAL service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.factory</name>

@@ -25,8 +25,7 @@ $(call inherit-product, vendor/smartisan/osborn/osborn-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-mk
+    $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -154,23 +153,23 @@ PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service \
-    libbt-vendor \
-    libbthost_if
+# PRODUCT_PACKAGES += \
+#     android.hardware.bluetooth@1.0-impl \
+#     android.hardware.bluetooth@1.0-service \
+#     libbt-vendor \
+#     libbthost_if
 
 # Camera
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/camera/camera_config.xml:system/etc/camera/camera_config.xml
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/camera/camera_config.xml:system/etc/camera/camera_config.xml
 
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service \
-    camera.device@1.0-impl \
-    camera.device@3.2-impl \
-    vendor.qti.hardware.camera.device@1.0 \
-    vendor.qti.hardware.camera.device@1.0_vendor
+# PRODUCT_PACKAGES += \
+#     android.hardware.camera.provider@2.4-impl \
+#     android.hardware.camera.provider@2.4-service \
+#     camera.device@1.0-impl \
+#     camera.device@3.2-impl \
+#     vendor.qti.hardware.camera.device@1.0 \
+#     vendor.qti.hardware.camera.device@1.0_vendor
 
 PRODUCT_PACKAGES += \
     Snap
@@ -230,23 +229,23 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service
 
 # GPS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl-qti \
-    android.hardware.gnss@1.0-service-qti \
-    libgnss \
-    libgnsspps \
-    libgps.utils \
-    liblocation_api \
-    libloc_core \
-    libloc_pla \
-    libvehiclenetwork-native
+# PRODUCT_PACKAGES += \
+#     android.hardware.gnss@1.0-impl-qti \
+#     android.hardware.gnss@1.0-service-qti \
+#     libgnss \
+#     libgnsspps \
+#     libgps.utils \
+#     liblocation_api \
+#     libloc_core \
+#     libloc_pla \
+#     libvehiclenetwork-native
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
-    $(LOCAL_PATH)/gps/etc/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
-    $(LOCAL_PATH)/gps/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
-    $(LOCAL_PATH)/gps/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
-    $(LOCAL_PATH)/gps/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/gps/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
+#     $(LOCAL_PATH)/gps/etc/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
+#     $(LOCAL_PATH)/gps/etc/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
+#     $(LOCAL_PATH)/gps/etc/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
+#     $(LOCAL_PATH)/gps/etc/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf
 
 # Healthd
 PRODUCT_PACKAGES += \
@@ -261,8 +260,8 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0-java
 
 # IFAA (Fingerprint support for Alipay)
-PRODUCT_BOOT_JARS += \
-    ifaa_fw
+# PRODUCT_BOOT_JARS += \
+#     ifaa_fw
 
 # Input
 PRODUCT_COPY_FILES += \
@@ -309,27 +308,27 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
 
 # NFC
-PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl \
-    vendor.nxp.hardware.nfc@1.0 \
-    vendor.nxp.hardware.nfc@1.0-impl \
-    vendor.nxp.hardware.nfc@1.0-service
+# PRODUCT_PACKAGES += \
+#     android.hardware.nfc@1.0-impl \
+#     vendor.nxp.hardware.nfc@1.0 \
+#     vendor.nxp.hardware.nfc@1.0-impl \
+#     vendor.nxp.hardware.nfc@1.0-service
 
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    com.gsma.services.nfc \
-    com.nxp.nfc.nq \
-    libnqnfc-nci \
-    nfc_nci.nqx.default \
-    libnqp61-jcop-kit \
-    NQNfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
-    Tag
+# PRODUCT_PACKAGES += \
+#     com.android.nfc_extras \
+#     com.gsma.services.nfc \
+#     com.nxp.nfc.nq \
+#     libnqnfc-nci \
+#     nfc_nci.nqx.default \
+#     libnqp61-jcop-kit \
+#     NQNfcNci \
+#     nqnfcee_access.xml \
+#     nqnfcse_access.xml \
+#     Tag
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/nfc/libnfc-brcm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-brcm.conf \
+#     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -389,16 +388,16 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full
 
 # Sensors
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service
+# PRODUCT_PACKAGES += \
+#     android.hardware.sensors@1.0-impl \
+#     android.hardware.sensors@1.0-service
 
 # SOTER (Fingerprint support for WeChat Payment)
-PRODUCT_PACKAGES += \
-    soter
+# PRODUCT_PACKAGES += \
+#     soter
 
-PRODUCT_BOOT_JARS += \
-    soter
+# PRODUCT_BOOT_JARS += \
+#     soter
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -408,9 +407,9 @@ PRODUCT_BOOT_JARS += \
     telephony-ext
 
 # Tetheroffload
-PRODUCT_PACKAGES += \
-    ipacm \
-    IPACM_cfg.xml
+# PRODUCT_PACKAGES += \
+#     ipacm \
+#     IPACM_cfg.xml
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -441,18 +440,18 @@ PRODUCT_PACKAGES += \
     vndk-sp
 
 # Wifi
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
-    hostapd \
-    hostapd_cli \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
-    libwifi-hal-qcom \
-    wificond \
-    wpa_supplicant \
-    wpa_supplicant.conf
+# PRODUCT_PACKAGES += \
+#     android.hardware.wifi@1.0-service \
+#     hostapd \
+#     hostapd_cli \
+#     libqsap_sdk \
+#     libQWiFiSoftApCfg \
+#     libwifi-hal-qcom \
+#     wificond \
+#     wpa_supplicant \
+#     wpa_supplicant.conf
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+#     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+#     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
