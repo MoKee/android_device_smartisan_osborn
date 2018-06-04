@@ -42,6 +42,7 @@ setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
 write_headers
 
 write_makefiles "$MY_DIR"/proprietary-files.txt
+write_makefiles "$MY_DIR"/proprietary-files-qc.txt true
 
 # Finish
 write_footers
