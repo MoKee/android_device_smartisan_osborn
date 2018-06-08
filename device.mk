@@ -288,7 +288,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.sdm660
+    android.hardware.light@2.0-service.osborn
 
 # Media
 PRODUCT_COPY_FILES += \
