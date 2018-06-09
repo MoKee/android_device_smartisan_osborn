@@ -112,6 +112,10 @@ on post-fs-data
 on boot
     start rmt_storage
     start rfs_access
+
+    # Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
     mkdir /dev/cpuset/dex2oat
     write /dev/cpuset/dex2oat/cpus 0-4
     write /dev/cpuset/dex2oat/mems 0
