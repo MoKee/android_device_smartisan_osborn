@@ -41,7 +41,9 @@ vendor/lib/rfsa/adsp/libvpp_svc_skel.so
 
 # Audio
 lib/hw/audio.primary.sdm660.so
+lib/libtinycompress.so
 lib64/hw/audio.primary.sdm660.so
+lib64/libtinycompress.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
