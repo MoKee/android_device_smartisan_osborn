@@ -167,6 +167,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/camera_config.xml:system/etc/camera/camera_config.xml
 
 PRODUCT_PACKAGES += \
+    libshim_camera \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     vendor.qti.hardware.camera.device@1.0
