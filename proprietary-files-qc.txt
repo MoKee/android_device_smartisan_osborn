@@ -328,3 +328,6 @@ vendor/lib64/libkeymasterutils.so
 vendor/lib/hw/sound_trigger.primary.sdm660.so
 vendor/lib/libsmwrapper.so
 vendor/lib64/hw/sound_trigger.primary.sdm660.so
+
+# Radio
+vendor/lib64/libsettings.so
