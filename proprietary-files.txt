@@ -484,7 +484,7 @@ vendor/lib/libvqzip.so
 etc/firmware/DE.o.sdm660
 
 # Network
--priv-app/QtiTetherService/QtiTetherService.apk
+# -priv-app/QtiTetherService/QtiTetherService.apk
 vendor/lib64/libQtiTether.so
 vendor/lib64/libconnctrl.so
 vendor/lib64/libcsm_data.so
@@ -591,7 +591,7 @@ vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
 # Radio - IMS
--vendor/app/ims/ims.apk
+# -vendor/app/ims/ims.apk
 -vendor/app/imssettings/imssettings.apk
 bin/ims_rtp_daemon:vendor/bin/ims_rtp_daemon
 bin/imscmservice:vendor/bin/imscmservice
