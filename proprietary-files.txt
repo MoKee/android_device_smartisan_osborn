@@ -466,20 +466,6 @@ lib64/libifaa_jni.so
 -sbin/dm-tool;rootfs
 -sbin/logic_volume;rootfs
 
-# Media
--vendor/lib/libgpustats.so
--vendor/lib64/libgpustats.so
-lib/libOmxVpp.so
-lib/libvpplibrary.so
-vendor/lib/libI420colorconvert.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libmm-color-convertor.so
-vendor/lib/libmmosal.so
-vendor/lib/libvpphvx.so
-vendor/lib/libvqzip.so
-
 # Media firmware
 etc/firmware/DE.o.sdm660
 
