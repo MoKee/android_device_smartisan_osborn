@@ -169,7 +169,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libshim_camera \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service \
+    android.hardware.camera.provider@2.4-service.osborn \
     vendor.qti.hardware.camera.device@1.0
 
 PRODUCT_PACKAGES += \
