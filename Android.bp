@@ -16,4 +16,5 @@
 
 subdirs = [
     "light",
+    "camera/provider",
 ]
