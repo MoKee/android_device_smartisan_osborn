@@ -93,7 +93,6 @@ etc/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.sdm660.so|f68d801f9c4a5dad551e11c27354b4e1278eb5ad
 lib/libSensorManagerHAL.so|1cf47e4c1846978caa062a56e212e5e02c8e9f9f
 lib/libarcsoft_beautyshot.so
 lib/libarcsoft_dualcam_refocus.so
@@ -103,15 +102,12 @@ lib/libarcsoft_picselfie_algorithm.so
 lib/libarcsoft_refocus_sm.so
 lib/libarcsoft_smart_denoise.so
 lib/libmm-qcamera.so
-lib/libmmcamera_interface.so
-lib/libmmjpeg_interface.so
 lib/libmmlib2d_interface.so
 lib/libmms_gyro_vstab.so
 lib/libmms_gyro_vstab_auth.so
 lib/libmms_hal_vstab.so|daca04b93aa2110f3ed875a88b9dd4b53ce1e9fc
 lib/libmms_warper_vstab.so|59d4604aaf465920ca9df4f32948b2454bce04a8
 lib/libmpbase.so
-lib/libqomx_core.so
 lib/libsmart_hdr.so|f457d5de24935111e8ca3f10043c88a3a58180c1
 lib/libtt_panorama.so
 lib/sensors.hal.tof.so
