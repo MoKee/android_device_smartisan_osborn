@@ -445,7 +445,7 @@ bin/hvdcp_opti:vendor/bin/hvdcp_opti
 vendor/lib/liboemcrypto.so
 
 # Fingerprint sensor
-lib64/hw/fingerprint.default.so:lib64/hw/fingerprint.goodix.so
+lib64/hw/goodixfingerprint.default.so:lib64/hw/fingerprint.goodix.so
 lib64/hw/fpcfingerprint.sdm660.so:lib64/hw/fingerprint.fpc.so
 lib64/libgf_ca.so
 lib64/libgf_hal.so

@@ -57,4 +57,12 @@ function fix_fpc () {
 
 fix_fpc lib64/hw/fingerprint.fpc.so
 
+function fix_goodix () {
+    sed -i \
+        's/\x00goodixfingerprint\x00/\x00fingerprint\x00\x00\x00\x00\x00\x00\x00/' \
+        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/"$1"
+}
+
+fix_goodix lib64/hw/fingerprint.goodix.so
+
 "$MY_DIR"/setup-makefiles.sh
