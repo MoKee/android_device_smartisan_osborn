@@ -48,6 +48,7 @@ setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" false "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 extract "$MY_DIR"/proprietary-files-qc.txt "$SRC_QC" "$SECTION"
+extract "$MY_DIR"/proprietary-files-qc-perf.txt "$SRC_QC" "$SECTION"
 
 function fix_fpc () {
     sed -i \

@@ -360,5 +360,9 @@ vendor/lib64/libmm-color-convertor.so
 vendor/lib64/libvpphvx.so
 vendor/lib64/libvpplibrary.so
 
+# Perf
+vendor/bin/energy-awareness
+vendor/bin/msm_irqbalance
+
 # Radio
 vendor/lib64/libsettings.so
