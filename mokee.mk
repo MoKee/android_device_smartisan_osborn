@@ -41,10 +41,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := Android/osborn/osborn:7.1.1/NGI77B/1529059369:user/dev-keys
 
-# Verity
+# Sign bootable images
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_SUPPORTS_VERITY := true
-PRODUCT_SUPPORTS_VERITY_FEC := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/testkey
 
 TARGET_VENDOR := Smartisan
