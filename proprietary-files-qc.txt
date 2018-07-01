@@ -364,5 +364,27 @@ vendor/lib64/libvpplibrary.so
 vendor/bin/energy-awareness
 vendor/bin/msm_irqbalance
 
+# Peripheral manager
+vendor/bin/pm-proxy
+vendor/bin/pm-service
+vendor/lib/libperipheral_client.so
+vendor/lib64/libperipheral_client.so
+
 # Radio
 vendor/lib64/libsettings.so
+
+# Thermal
+vendor/lib/libthermalclient.so
+vendor/lib64/libthermalclient.so
+vendor/bin/thermal-engine
+vendor/lib64/libthermalioctl.so
+
+# Time services
+-vendor/app/TimeService/TimeService.apk
+-vendor/lib/libtime_genoff.so
+-vendor/lib64/libtime_genoff.so
+vendor/bin/time_daemon
+
+# Wi-Fi
+vendor/bin/cnss-daemon
+vendor/bin/cnss_diag

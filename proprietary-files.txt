@@ -477,12 +477,6 @@ vendor/lib64/libcsm_data.so
 # NFC firmware
 vendor/firmware/libpn553_fw.so
 
-# Peripheral manager
-bin/pm-proxy:vendor/bin/pm-proxy
-bin/pm-service:vendor/bin/pm-service
-vendor/lib/libperipheral_client.so
-vendor/lib64/libperipheral_client.so
-
 # Postprocessing
 vendor/bin/mm-pp-dpps
 vendor/lib64/libdisp-aba.so
@@ -620,20 +614,4 @@ etc/firmware/a530_pfp.fw
 etc/firmware/a530_pm4.fw
 
 # Thermal
--vendor/lib/libthermalclient.so
--vendor/lib64/libthermalclient.so
-etc/thermal-engine.conf
-vendor/bin/thermal-engine
-vendor/lib64/libthermalioctl.so
-
-# Time services
--app/TimeService/TimeService.apk
--vendor/lib/libtime_genoff.so
--vendor/lib64/libtime_genoff.so
-bin/time_daemon:vendor/bin/time_daemon
-vendor/lib/libTimeService.so
-vendor/lib64/libTimeService.so
-
-# Wifi
-bin/cnss-daemon:vendor/bin/cnss-daemon
-bin/cnss_diag:vendor/bin/cnss_diag
+etc/thermal-engine.conf:vendor/etc/thermal-engine.conf
