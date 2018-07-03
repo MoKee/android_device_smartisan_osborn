@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Copyright (C) 2018 The MoKee Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+cp $ANDROID_BUILD_TOP/device/smartisan/osborn/prebuilt/bin/deunify.sh out/
+
+NFC_FILES=(
+system/vendor/etc/permissions/android.hardware.nfc.hce.xml
+system/vendor/etc/permissions/android.hardware.nfc.hcef.xml
+system/vendor/etc/permissions/android.hardware.nfc.xml
+system/vendor/etc/permissions/com.android.nfc_extras.xml
+system/vendor/etc/init/vendor.nxp.hardware.nfc@1.0-service.rc
+)
+
+for i in "${NFC_FILES[@]}"; do
+  if [ -f z2/$i ]; then
+    mkdir -p out/$(dirname $i)
+    mv -f z2/$i out/$i
+    rm -f z1/$i
+  fi
+done

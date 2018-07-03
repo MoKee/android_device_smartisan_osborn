@@ -381,6 +381,10 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     fstab.qcom
 
+# Releasetools
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/bin/deunify.sh:install/bin/deunify.sh
+
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl

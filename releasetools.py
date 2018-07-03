@@ -19,8 +19,16 @@ def FullOTA_Assertions(info):
   AddModemAssertion(info)
   return
 
+def FullOTA_InstallEnd(info):
+  AddDeunifyScript(info)
+  return
+
 def IncrementalOTA_Assertions(info):
   AddModemAssertion(info)
+  return
+
+def IncrementalOTA_InstallEnd(info):
+  AddDeunifyScript(info)
   return
 
 def AddModemAssertion(info):
@@ -32,3 +40,8 @@ def AddModemAssertion(info):
       cmd = 'assert(osborn.verify_modem("' + version + '") == "1");'
       info.script.AppendExtra(cmd)
   return
+
+def AddDeunifyScript(info):
+  info.script.Mount("/system")
+  info.script.AppendExtra('run_program("/tmp/install/bin/deunify.sh");')
+  info.script.Unmount("/system")
