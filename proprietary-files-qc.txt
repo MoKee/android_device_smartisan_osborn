@@ -378,7 +378,3 @@ vendor/lib64/libthermalioctl.so
 -vendor/lib/libtime_genoff.so
 -vendor/lib64/libtime_genoff.so
 vendor/bin/time_daemon
-
-# Wi-Fi
-vendor/bin/cnss-daemon
-vendor/bin/cnss_diag

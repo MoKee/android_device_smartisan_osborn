@@ -649,3 +649,7 @@ etc/firmware/a530_pm4.fw
 
 # Thermal
 etc/thermal-engine.conf:vendor/etc/thermal-engine.conf
+
+# Wifi
+bin/cnss-daemon:vendor/bin/cnss-daemon
+bin/cnss_diag:vendor/bin/cnss_diag
