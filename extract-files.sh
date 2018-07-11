@@ -66,4 +66,17 @@ function fix_goodix () {
 
 fix_goodix lib64/hw/fingerprint.goodix.so
 
+function fix_vendor () {
+    sed -i \
+        "s/\/system\/$1\//\/vendor\/$1\//g" \
+        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE_COMMON"/proprietary/vendor/"$2"
+}
+
+fix_vendor etc lib/hw/audio.primary.sdm660.so
+fix_vendor etc lib/libacdbloader.so
+fix_vendor etc lib64/hw/audio.primary.sdm660.so
+fix_vendor etc lib64/libacdbloader.so
+fix_vendor lib lib/hw/audio.primary.sdm660.so
+fix_vendor lib lib64/hw/audio.primary.sdm660.so
+
 "$MY_DIR"/setup-makefiles.sh
