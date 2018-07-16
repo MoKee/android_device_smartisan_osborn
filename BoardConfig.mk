@@ -126,8 +126,8 @@ QCOM_BT_USE_SMD_TTY := true
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
-TARGET_LD_SHIM_LIBS += /system/lib/hw/camera.sdm660.so|/system/lib/libshim_camera.so
-TARGET_LD_SHIM_LIBS += /system/vendor/lib/libmmcamera_ppeiscore.so|/system/lib/libshim_camera.so
+TARGET_LD_SHIM_LIBS += /vendor/lib/hw/camera.sdm660.so|/system/lib/libshim_camera.so
+TARGET_LD_SHIM_LIBS += /vendor/lib/libmmcamera_ppeiscore.so|/system/lib/libshim_camera.so
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -218,7 +218,7 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # RIL
 TARGET_RIL_VARIANT := caf
-TARGET_LD_SHIM_LIBS += /system/vendor/lib64/libril-qc-qmi-1.so|/system/lib64/libshim_rilqc.so
+TARGET_LD_SHIM_LIBS += /vendor/lib64/libril-qc-qmi-1.so|/system/lib64/libshim_rilqc.so
 
 # Releasetools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_osborn
