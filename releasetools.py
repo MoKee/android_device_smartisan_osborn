@@ -17,6 +17,7 @@ import re
 
 def FullOTA_Assertions(info):
   AddModemAssertion(info)
+  AddTreblize(info)
   return
 
 def FullOTA_InstallEnd(info):
@@ -25,6 +26,7 @@ def FullOTA_InstallEnd(info):
 
 def IncrementalOTA_Assertions(info):
   AddModemAssertion(info)
+  AddTreblize(info)
   return
 
 def IncrementalOTA_InstallEnd(info):
@@ -45,3 +47,13 @@ def AddDeunifyScript(info):
   info.script.Mount("/system")
   info.script.AppendExtra('run_program("/tmp/install/bin/deunify.sh");')
   info.script.Unmount("/system")
+
+def AddTreblize(info):
+  info.script.AppendExtra('ui_print("Checking Project Treble...");');
+  info.script.AppendExtra('package_extract_dir("install", "/tmp/install");');
+  info.script.AppendExtra('set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);');
+  info.script.AppendExtra('set_metadata_recursive("/tmp/install/bin", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);');
+  info.script.AppendExtra('ifelse(is_mounted("/system"), unmount("/system"));');
+  info.script.AppendExtra('if run_program("/tmp/install/bin/treblize.sh") != 0 then');
+  info.script.AppendExtra('abort("Treblize failed.");');
+  info.script.AppendExtra('endif;');
