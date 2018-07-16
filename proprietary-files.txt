@@ -122,41 +122,41 @@ bin/hci_qcomm_init:vendor/bin/hci_qcomm_init
 bin/wcnss_filter:vendor/bin/wcnss_filter
 
 # Bluetooth firmware
-etc/firmware/nvm_tlv.bin
-etc/firmware/nvm_tlv_1.3.bin
-etc/firmware/nvm_tlv_2.1.bin
-etc/firmware/nvm_tlv_3.0.bin
-etc/firmware/nvm_tlv_3.2.bin
-etc/firmware/rampatch_tlv.img
-etc/firmware/rampatch_tlv_1.3.tlv
-etc/firmware/rampatch_tlv_2.1.tlv
-etc/firmware/rampatch_tlv_3.0.tlv
-etc/firmware/rampatch_tlv_3.2.tlv
+etc/firmware/nvm_tlv.bin:vendor/firmware/nvm_tlv.bin
+etc/firmware/nvm_tlv_1.3.bin:vendor/firmware/nvm_tlv_1.3.bin
+etc/firmware/nvm_tlv_2.1.bin:vendor/firmware/nvm_tlv_2.1.bin
+etc/firmware/nvm_tlv_3.0.bin:vendor/firmware/nvm_tlv_3.0.bin
+etc/firmware/nvm_tlv_3.2.bin:vendor/firmware/nvm_tlv_3.2.bin
+etc/firmware/rampatch_tlv.img:vendor/firmware/rampatch_tlv.img
+etc/firmware/rampatch_tlv_1.3.tlv:vendor/firmware/rampatch_tlv_1.3.tlv
+etc/firmware/rampatch_tlv_2.1.tlv:vendor/firmware/rampatch_tlv_2.1.tlv
+etc/firmware/rampatch_tlv_3.0.tlv:vendor/firmware/rampatch_tlv_3.0.tlv
+etc/firmware/rampatch_tlv_3.2.tlv:vendor/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
-bin/mm-qcamera-daemon
-lib/hw/camera.sdm660.so|f68d801f9c4a5dad551e11c27354b4e1278eb5ad
-lib/libSensorManagerHAL.so|1cf47e4c1846978caa062a56e212e5e02c8e9f9f
-lib/libarcsoft_beautyshot.so
-lib/libarcsoft_dualcam_refocus.so
-lib/libarcsoft_low_light_shot.so
-lib/libarcsoft_mpbase_sm.so
-lib/libarcsoft_picselfie_algorithm.so
-lib/libarcsoft_refocus_sm.so
-lib/libarcsoft_smart_denoise.so
-lib/libmm-qcamera.so
-lib/libmmcamera_interface.so
-lib/libmmjpeg_interface.so
-lib/libmmlib2d_interface.so
-lib/libmms_gyro_vstab.so
-lib/libmms_gyro_vstab_auth.so
-lib/libmms_hal_vstab.so|daca04b93aa2110f3ed875a88b9dd4b53ce1e9fc
-lib/libmms_warper_vstab.so|59d4604aaf465920ca9df4f32948b2454bce04a8
-lib/libmpbase.so
-lib/libqomx_core.so
-lib/libsmart_hdr.so|f457d5de24935111e8ca3f10043c88a3a58180c1
-lib/libtt_panorama.so
-lib/sensors.hal.tof.so
+bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon
+lib/hw/camera.sdm660.so:vendor/lib/hw/camera.sdm660.so|c6afc2a73bbb18de8563d71459e358aa1fd9572c
+lib/libSensorManagerHAL.so:vendor/lib/libSensorManagerHAL.so|1cf47e4c1846978caa062a56e212e5e02c8e9f9f
+lib/libarcsoft_beautyshot.so:vendor/lib/libarcsoft_beautyshot.so
+lib/libarcsoft_dualcam_refocus.so:vendor/lib/libarcsoft_dualcam_refocus.so
+lib/libarcsoft_low_light_shot.so:vendor/lib/libarcsoft_low_light_shot.so
+lib/libarcsoft_mpbase_sm.so:vendor/lib/libarcsoft_mpbase_sm.so
+lib/libarcsoft_picselfie_algorithm.so:vendor/lib/libarcsoft_picselfie_algorithm.so
+lib/libarcsoft_refocus_sm.so:vendor/lib/libarcsoft_refocus_sm.so
+lib/libarcsoft_smart_denoise.so:vendor/lib/libarcsoft_smart_denoise.so
+lib/libmm-qcamera.so:vendor/lib/libmm-qcamera.so
+lib/libmmcamera_interface.so:vendor/lib/libmmcamera_interface.so
+lib/libmmjpeg_interface.so:vendor/lib/libmmjpeg_interface.so
+lib/libmmlib2d_interface.so:vendor/lib/libmmlib2d_interface.so
+lib/libmms_gyro_vstab.so:vendor/lib/libmms_gyro_vstab.so
+lib/libmms_gyro_vstab_auth.so:vendor/lib/libmms_gyro_vstab_auth.so
+lib/libmms_hal_vstab.so:vendor/lib/libmms_hal_vstab.so|3bb8d8b1edae3678df90feeb91d187fbd83bf2d4
+lib/libmms_warper_vstab.so:vendor/lib/libmms_warper_vstab.so|59d4604aaf465920ca9df4f32948b2454bce04a8
+lib/libmpbase.so:vendor/lib/libmpbase.so
+lib/libqomx_core.so:vendor/lib/libqomx_core.so
+lib/libsmart_hdr.so:vendor/lib/libsmart_hdr.so|f457d5de24935111e8ca3f10043c88a3a58180c1
+lib/libtt_panorama.so:vendor/lib/libtt_panorama.so
+lib/sensors.hal.tof.so:vendor/lib/sensors.hal.tof.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libchromaflash.so
 vendor/lib/libdualcameraddm.so|ea8d5269c9bc27bf57903eaa9bd3d37c57939275
@@ -380,61 +380,61 @@ vendor/lib/libchromatix_s5k4e8_zsl_preview_3a.so
 vendor/lib/libchromatix_s5k4e8_zsl_video_3a.so
 
 # Camera configs
-etc/GyroOffset_db.config
-etc/camera/csidtg_camera.xml
-etc/camera/csidtg_chromatix.xml
-etc/camera/imx386_chromatix.xml
-etc/camera/imx386_sunny_chromatix.xml
-etc/camera/s5k3p8sp_chromatix.xml
-etc/camera/s5k3p8sp_sunny_chromatix.xml
-etc/camera/s5k4e8_chromatix.xml
-etc/camera/s5k4e8_sunny_chromatix.xml
-etc/dualcalData.data
-etc/eis_configs/BMI160_vstab_db_1080p_preview_0.config
-etc/eis_configs/BMI160_vstab_db_1080p_video_0.config
-etc/eis_configs/BMI160_vstab_db_1080p_video_1.config
-etc/eis_configs/BMI160_vstab_db_4k_video_0.config
-etc/eis_configs/BMI160_vstab_db_720p_preview_0.config
-etc/eis_configs/BMI160_vstab_db_720p_video_0.config
-etc/eis_configs/BMI160_vstab_db_720p_video_1.config
-etc/eis_configs/ICM20600_vstab_db_1080p_preview_0.config
-etc/eis_configs/ICM20600_vstab_db_1080p_video_0.config
-etc/eis_configs/ICM20600_vstab_db_1080p_video_1.config
-etc/eis_configs/ICM20600_vstab_db_4k_video_0.config
-etc/eis_configs/ICM20600_vstab_db_720p_preview_0.config
-etc/eis_configs/ICM20600_vstab_db_720p_video_0.config
-etc/eis_configs/ICM20600_vstab_db_720p_video_1.config
-etc/fsync_db.config
-etc/sensor_denoise_table/imx386/ISO1600_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO1600_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO1600_3968x2976.ncf
-etc/sensor_denoise_table/imx386/ISO200_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO200_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO200_3968x2976.ncf
-etc/sensor_denoise_table/imx386/ISO2400_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO2400_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO2400_3968x2976.ncf
-etc/sensor_denoise_table/imx386/ISO3200_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO3200_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO3200_3968x2976.ncf
-etc/sensor_denoise_table/imx386/ISO400_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO400_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO400_3968x2976.ncf
-etc/sensor_denoise_table/imx386/ISO800_2944x2944.ncf
-etc/sensor_denoise_table/imx386/ISO800_3968x2232.ncf
-etc/sensor_denoise_table/imx386/ISO800_3968x2976.ncf
+etc/GyroOffset_db.config:vendor/etc/GyroOffset_db.config
+etc/camera/csidtg_camera.xml:vendor/etc/camera/csidtg_camera.xml
+etc/camera/csidtg_chromatix.xml:vendor/etc/camera/csidtg_chromatix.xml
+etc/camera/imx386_chromatix.xml:vendor/etc/camera/imx386_chromatix.xml
+etc/camera/imx386_sunny_chromatix.xml:vendor/etc/camera/imx386_sunny_chromatix.xml
+etc/camera/s5k3p8sp_chromatix.xml:vendor/etc/camera/s5k3p8sp_chromatix.xml
+etc/camera/s5k3p8sp_sunny_chromatix.xml:vendor/etc/camera/s5k3p8sp_sunny_chromatix.xml
+etc/camera/s5k4e8_chromatix.xml:vendor/etc/camera/s5k4e8_chromatix.xml
+etc/camera/s5k4e8_sunny_chromatix.xml:vendor/etc/camera/s5k4e8_sunny_chromatix.xml
+etc/dualcalData.data:vendor/etc/dualcalData.data
+etc/eis_configs/BMI160_vstab_db_1080p_preview_0.config:vendor/etc/eis_configs/BMI160_vstab_db_1080p_preview_0.config
+etc/eis_configs/BMI160_vstab_db_1080p_video_0.config:vendor/etc/eis_configs/BMI160_vstab_db_1080p_video_0.config
+etc/eis_configs/BMI160_vstab_db_1080p_video_1.config:vendor/etc/eis_configs/BMI160_vstab_db_1080p_video_1.config
+etc/eis_configs/BMI160_vstab_db_4k_video_0.config:vendor/etc/eis_configs/BMI160_vstab_db_4k_video_0.config
+etc/eis_configs/BMI160_vstab_db_720p_preview_0.config:vendor/etc/eis_configs/BMI160_vstab_db_720p_preview_0.config
+etc/eis_configs/BMI160_vstab_db_720p_video_0.config:vendor/etc/eis_configs/BMI160_vstab_db_720p_video_0.config
+etc/eis_configs/BMI160_vstab_db_720p_video_1.config:vendor/etc/eis_configs/BMI160_vstab_db_720p_video_1.config
+etc/eis_configs/ICM20600_vstab_db_1080p_preview_0.config:vendor/etc/eis_configs/ICM20600_vstab_db_1080p_preview_0.config
+etc/eis_configs/ICM20600_vstab_db_1080p_video_0.config:vendor/etc/eis_configs/ICM20600_vstab_db_1080p_video_0.config
+etc/eis_configs/ICM20600_vstab_db_1080p_video_1.config:vendor/etc/eis_configs/ICM20600_vstab_db_1080p_video_1.config
+etc/eis_configs/ICM20600_vstab_db_4k_video_0.config:vendor/etc/eis_configs/ICM20600_vstab_db_4k_video_0.config
+etc/eis_configs/ICM20600_vstab_db_720p_preview_0.config:vendor/etc/eis_configs/ICM20600_vstab_db_720p_preview_0.config
+etc/eis_configs/ICM20600_vstab_db_720p_video_0.config:vendor/etc/eis_configs/ICM20600_vstab_db_720p_video_0.config
+etc/eis_configs/ICM20600_vstab_db_720p_video_1.config:vendor/etc/eis_configs/ICM20600_vstab_db_720p_video_1.config
+etc/fsync_db.config:vendor/etc/fsync_db.config
+etc/sensor_denoise_table/imx386/ISO1600_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO1600_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO1600_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO1600_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO1600_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO1600_3968x2976.ncf
+etc/sensor_denoise_table/imx386/ISO200_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO200_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO200_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO200_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO200_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO200_3968x2976.ncf
+etc/sensor_denoise_table/imx386/ISO2400_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO2400_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO2400_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO2400_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO2400_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO2400_3968x2976.ncf
+etc/sensor_denoise_table/imx386/ISO3200_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO3200_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO3200_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO3200_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO3200_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO3200_3968x2976.ncf
+etc/sensor_denoise_table/imx386/ISO400_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO400_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO400_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO400_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO400_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO400_3968x2976.ncf
+etc/sensor_denoise_table/imx386/ISO800_2944x2944.ncf:vendor/etc/sensor_denoise_table/imx386/ISO800_2944x2944.ncf
+etc/sensor_denoise_table/imx386/ISO800_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO800_3968x2232.ncf
+etc/sensor_denoise_table/imx386/ISO800_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO800_3968x2976.ncf
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
-etc/firmware/cpp_firmware_v1_5_0.fw
-etc/firmware/cpp_firmware_v1_5_2.fw
-etc/firmware/cpp_firmware_v1_6_0.fw
-etc/firmware/cpp_firmware_v1_8_0.fw
-etc/firmware/cpp_firmware_v1_10_0.fw
-etc/firmware/cpp_firmware_v1_12_0.fw
+etc/firmware/cpp_firmware_v1_1_1.fw:vendor/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw:vendor/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw:vendor/firmware/cpp_firmware_v1_2_0.fw
+etc/firmware/cpp_firmware_v1_4_0.fw:vendor/firmware/cpp_firmware_v1_4_0.fw
+etc/firmware/cpp_firmware_v1_5_0.fw:vendor/firmware/cpp_firmware_v1_5_0.fw
+etc/firmware/cpp_firmware_v1_5_2.fw:vendor/firmware/cpp_firmware_v1_5_2.fw
+etc/firmware/cpp_firmware_v1_6_0.fw:vendor/firmware/cpp_firmware_v1_6_0.fw
+etc/firmware/cpp_firmware_v1_8_0.fw:vendor/firmware/cpp_firmware_v1_8_0.fw
+etc/firmware/cpp_firmware_v1_10_0.fw:vendor/firmware/cpp_firmware_v1_10_0.fw
+etc/firmware/cpp_firmware_v1_12_0.fw:vendor/firmware/cpp_firmware_v1_12_0.fw
 
 # Camera sensors
 vendor/lib/libmmcamera_isp_abf48.so
@@ -489,11 +489,11 @@ bin/hvdcp_opti:vendor/bin/hvdcp_opti
 vendor/lib/liboemcrypto.so
 
 # Fingerprint sensor
-lib64/hw/goodixfingerprint.default.so:lib64/hw/fingerprint.goodix.so
-lib64/hw/fpcfingerprint.sdm660.so:lib64/hw/fingerprint.fpc.so
-lib64/libgf_ca.so
-lib64/libgf_hal.so
-lib64/libgoodixfingerprintd_binder.so
+lib64/hw/goodixfingerprint.default.so:vendor/lib64/hw/fingerprint.goodix.so
+lib64/hw/fpcfingerprint.sdm660.so:vendor/lib64/hw/fingerprint.fpc.so
+lib64/libgf_ca.so:vendor/lib64/libgf_ca.so
+lib64/libgf_hal.so:vendor/lib64/libgf_hal.so
+lib64/libgoodixfingerprintd_binder.so:vendor/lib64/libgoodixfingerprintd_binder.so
 vendor/lib64/libqti_performance.so
 
 # IFAA (Fingerprint support for Alipay)
@@ -510,7 +510,7 @@ lib64/libifaa_jni.so
 -sbin/logic_volume;rootfs
 
 # Media firmware
-etc/firmware/DE.o.sdm660
+etc/firmware/DE.o.sdm660:vendor/firmware/DE.o.sdm660
 
 # NFC firmware
 vendor/firmware/libpn553_fw.so
@@ -527,7 +527,7 @@ vendor/lib64/libdisp-aba.so
 
 # QMI
 bin/irsc_util:vendor/bin/irsc_util
-etc/permissions/qti_permissions.xml
+etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
 vendor/bin/pd-mapper
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
@@ -563,23 +563,23 @@ vendor/lib64/libqmiservices.so
 vendor/lib64/libsmemlog.so
 
 # Radio
--app/QtiTelephonyService/QtiTelephonyService.apk
--app/embms/embms.apk
--app/shutdownlistener/shutdownlistener.apk
--framework/qcrilhook.jar
+-app/QtiTelephonyService/QtiTelephonyService.apk:vendor/app/QtiTelephonyService/QtiTelephonyService.apk
+-app/embms/embms.apk:vendor/app/embms/embms.apk
+-app/shutdownlistener/shutdownlistener.apk:vendor/app/shutdownlistener/shutdownlistener.apk
+-framework/qcrilhook.jar:vendor/framework/qcrilhook.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/ipacm-diag:vendor/bin/ipacm-diag
 bin/netmgrd:vendor/bin/netmgrd
 bin/radish:vendor/bin/radish
 bin/rmt_storage:vendor/bin/rmt_storage
 bin/tftp_server:vendor/bin/tftp_server
-etc/data/dsi_config.xml
-etc/data/netmgr_config.xml
-etc/permissions/embms.xml
-etc/permissions/qcrilhook.xml
-etc/permissions/telephonyservice.xml
-framework/QtiTelephonyServicelibrary.jar
-framework/embmslibrary.jar
+etc/data/dsi_config.xml:vendor/etc/data/dsi_config.xml
+etc/data/netmgr_config.xml:vendor/etc/data/netmgr_config.xml
+etc/permissions/embms.xml:vendor/etc/permissions/embms.xml
+etc/permissions/qcrilhook.xml:vendor/etc/permissions/qcrilhook.xml
+etc/permissions/telephonyservice.xml:vendor/etc/permissions/telephonyservice.xml
+framework/QtiTelephonyServicelibrary.jar:vendor/framework/QtiTelephonyServicelibrary.jar
+framework/embmslibrary.jar:vendor/framework/embmslibrary.jar
 vendor/bin/qti
 vendor/lib/libmdmdetect.so
 vendor/lib64/libconfigdb.so
@@ -603,10 +603,9 @@ bin/ims_rtp_daemon:vendor/bin/ims_rtp_daemon
 bin/imscmservice:vendor/bin/imscmservice
 bin/imsdatadaemon:vendor/bin/imsdatadaemon
 bin/imsqmidaemon:vendor/bin/imsqmidaemon
-etc/permissions/imscm.xml
-etc/permissions/qti-vzw-ims-internal.xml
-framework/imscmlibrary.jar
-framework/rcsimssettings.jar
+etc/permissions/imscm.xml:vendor/etc/permissions/imscm.xml
+etc/permissions/qti-vzw-ims-internal.xml:vendor/etc/permissions/qti-vzw-ims-internal.xml
+framework/imscmlibrary.jar:vendor/framework/imscmlibrary.jar
 vendor/framework/qti-vzw-ims-internal.jar
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-ims-rcscmjni.so
@@ -648,14 +647,14 @@ vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
 
 # Signed graphics firmware
-etc/firmware/a512_zap.b00
-etc/firmware/a512_zap.b01
-etc/firmware/a512_zap.b02
-etc/firmware/a512_zap.elf
-etc/firmware/a512_zap.mdt
-etc/firmware/a530_gpmu.fw2
-etc/firmware/a530_pfp.fw
-etc/firmware/a530_pm4.fw
+etc/firmware/a512_zap.b00:vendor/firmware/a512_zap.b00
+etc/firmware/a512_zap.b01:vendor/firmware/a512_zap.b01
+etc/firmware/a512_zap.b02:vendor/firmware/a512_zap.b02
+etc/firmware/a512_zap.elf:vendor/firmware/a512_zap.elf
+etc/firmware/a512_zap.mdt:vendor/firmware/a512_zap.mdt
+etc/firmware/a530_gpmu.fw2:vendor/firmware/a530_gpmu.fw2
+etc/firmware/a530_pfp.fw:vendor/firmware/a530_pfp.fw
+etc/firmware/a530_pm4.fw:vendor/firmware/a530_pm4.fw
 
 # Thermal
 etc/thermal-engine.conf:vendor/etc/thermal-engine.conf
