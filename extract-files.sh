@@ -53,7 +53,7 @@ extract "$MY_DIR"/proprietary-files-qc-perf.txt "$SRC_QC" "$SECTION"
 function fix_fpc () {
     sed -i \
         's/\x00fpcfingerprint\x00/\x00fingerprint\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/"$1"
+        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
 }
 
 fix_fpc lib64/hw/fingerprint.fpc.so
@@ -61,7 +61,7 @@ fix_fpc lib64/hw/fingerprint.fpc.so
 function fix_goodix () {
     sed -i \
         's/\x00goodixfingerprint\x00/\x00fingerprint\x00\x00\x00\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/"$1"
+        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
 }
 
 fix_goodix lib64/hw/fingerprint.goodix.so
@@ -72,11 +72,23 @@ function fix_vendor () {
         "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$2"
 }
 
+# Audio
 fix_vendor etc lib/hw/audio.primary.sdm660.so
 fix_vendor etc lib/libacdbloader.so
 fix_vendor etc lib64/hw/audio.primary.sdm660.so
 fix_vendor etc lib64/libacdbloader.so
 fix_vendor lib lib/hw/audio.primary.sdm660.so
 fix_vendor lib lib64/hw/audio.primary.sdm660.so
+
+# Camera
+fix_vendor etc lib/hw/camera.sdm660.so
+fix_vendor etc lib/libmmcamera2_sensor_modules.so
+fix_vendor etc lib/libmms_hal_vstab.so
+
+# Radio
+fix_vendor framework etc/permissions/embms.xml
+fix_vendor framework etc/permissions/qcrilhook.xml
+fix_vendor framework etc/permissions/telephonyservice.xml
+fix_vendor framework etc/permissions/imscm.xml
 
 "$MY_DIR"/setup-makefiles.sh
