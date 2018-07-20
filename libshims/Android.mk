@@ -31,19 +31,3 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MULTILIB := 32
 
 include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := rilqc_shim.cpp
-
-LOCAL_C_INCLUDES := \
-    bionic/libc/include
-
-LOCAL_SHARED_LIBRARIES := \
-    libc
-
-LOCAL_MODULE := libshim_rilqc
-LOCAL_MODULE_TAGS := optional
-LOCAL_MULTILIB := 64
-
-include $(BUILD_SHARED_LIBRARY)
