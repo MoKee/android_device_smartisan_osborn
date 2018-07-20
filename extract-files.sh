@@ -87,8 +87,8 @@ fix_vendor etc lib/libmms_hal_vstab.so
 
 # Radio
 fix_vendor framework etc/permissions/embms.xml
+fix_vendor framework etc/permissions/qcnvitems.xml
 fix_vendor framework etc/permissions/qcrilhook.xml
 fix_vendor framework etc/permissions/telephonyservice.xml
-fix_vendor framework etc/permissions/imscm.xml
 
 "$MY_DIR"/setup-makefiles.sh

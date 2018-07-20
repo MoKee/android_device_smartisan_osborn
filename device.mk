@@ -403,7 +403,6 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    libshim_rilqc \
     ims-ext-common \
     librmnetctl \
     libxml2 \
