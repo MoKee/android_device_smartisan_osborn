@@ -167,6 +167,10 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
+service remosaic_daemon /vendor/bin/remosaic_daemon
+    class late_start
+    user camera
+
 #start camera server as daemon
 #service qcamerasvr /system/bin/mm-qcamera-daemon
 #    class late_start
