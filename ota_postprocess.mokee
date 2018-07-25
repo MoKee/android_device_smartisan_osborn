@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-cat << EOF >> updater-script
+cat << EOF >> post.txt
 package_extract_file("deunify.sh", "/tmp/deunify.sh");
 set_metadata("/tmp/deunify.sh", "uid", 0, "gid", 0, "mode", 0755);
 run_program("/tmp/deunify.sh");
