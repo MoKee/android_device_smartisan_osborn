@@ -135,7 +135,6 @@ etc/firmware/rampatch_tlv_3.2.tlv:vendor/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
 bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon
-bin/remosaic_daemon:vendor/bin/remosaic_daemon
 lib/hw/camera.sdm660.so:vendor/lib/hw/camera.sdm660.so|c6afc2a73bbb18de8563d71459e358aa1fd9572c
 lib/libSensorManagerHAL.so:vendor/lib/libSensorManagerHAL.so|1cf47e4c1846978caa062a56e212e5e02c8e9f9f
 lib/libarcsoft_beautyshot.so:vendor/lib/libarcsoft_beautyshot.so
@@ -236,8 +235,6 @@ vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
 vendor/lib/liboptizoom.so
 vendor/lib/libremosaic_daemon.so
-vendor/lib/libremosaic_tuning.so
-vendor/lib/libremosaiclib.so
 vendor/lib/libseemore.so
 vendor/lib/libsmartcam_asb.so
 vendor/lib/libsmartcam_engine.so
@@ -245,9 +242,6 @@ vendor/lib/libsmartcam_tuning.so|e7e239f8ba6dca243ebfb613df5c9a26f395ab6d
 vendor/lib/libtrueportrait.so
 vendor/lib/libubifocus.so
 vendor/lib/mmi_camera.so
-vendor/lib64/libremosaic_daemon.so
-vendor/lib64/libremosaic_tuning.so
-vendor/lib64/libremosaiclib.so
 
 # Camera actuators
 vendor/lib/libactuator_lc898214xc.so
