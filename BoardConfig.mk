@@ -226,7 +226,7 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # RIL
 TARGET_RIL_VARIANT := caf
-TARGET_LD_SHIM_LIBS += /vendor/lib64/libril-qc-qmi-1.so|/system/lib64/libshim_rilqc.so
+TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Releasetools
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_osborn
