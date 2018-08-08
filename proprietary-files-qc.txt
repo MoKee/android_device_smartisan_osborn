@@ -567,9 +567,11 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 
 # Thermal
-vendor/lib/libthermalclient.so
-vendor/lib64/libthermalclient.so
 vendor/bin/thermal-engine
+vendor/lib/libthermalclient.so
+vendor/lib/libthermalfeature.so
+vendor/lib64/libthermalclient.so
+vendor/lib64/libthermalfeature.so
 vendor/lib64/libthermalioctl.so
 
 # Time services
