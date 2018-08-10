@@ -228,9 +228,7 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_osborn
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor-minimal
 
 # Timeservice
 BOARD_USES_QC_TIME_SERVICES := true
