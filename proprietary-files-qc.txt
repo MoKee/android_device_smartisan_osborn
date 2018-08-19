@@ -256,10 +256,10 @@ framework/com.qti.location.sdk.jar|1a6fd7706b1786f66e3f2af0e95c0d3ed182511e
 framework/izat.xt.srv.jar|e10f1baf6ae0f70c4a529e5711559cebbc3644c9
 lib/liblocationservice_jni.so|07544a12188cc81985be5cdd9b028b6ab69a0d6d
 lib/libxt_native.so|b15893e406eb8658803c482748005422663bb459
-lib/vendor.qti.gnss@1.0.so|4975b12835df8d7459a6abda60c69bfdb98f477e
+lib/vendor.qti.gnss@1.0.so|987d1acda545be2ca8fb9c09f751788206e037a8
 lib64/liblocationservice_jni.so|3c0190ec0135649c44706a01931f383968e3f548
 lib64/libxt_native.so|823ddf83fcae9774eb0e1b8722666ef48adb2fbd
-lib64/vendor.qti.gnss@1.0.so|e054ebd005a5f0350d0d139cfddefcd3c1e3eaed
+lib64/vendor.qti.gnss@1.0.so|85d960950349a4ec311e33a33460637173b32133
 vendor/bin/DR_AP_Service|7bccd5b7e70dec9b3e0190ee904f12112098e982
 vendor/bin/garden_app|6127ea8179f4376c00c475c4a4d6dacd71bf1ef4
 vendor/bin/hw/vendor.qti.gnss@1.0-service|bdf23fe2af07c2afb74721023431446104fd828d
@@ -296,7 +296,7 @@ vendor/lib/libslimclient.so|d7a01e0e22c1e37c185b54c6b30d68e82e5ae9bd
 vendor/lib/libulp2.so|a4625719bb6f53ec52ac3c92aafe04f2b7a016fa
 vendor/lib/libxtadapter.so|d9ab47714a5a6599a84bf3dfa79e765e42c62f07
 vendor/lib/libxtwifi_ulp_adaptor.so|b8f549d10c3665a080728b4eb09f93c9a08fa234
-vendor/lib/vendor.qti.gnss@1.0_vendor.so|17640a93c385f1be438e2e5e7bed398fd678b7c9
+vendor/lib/vendor.qti.gnss@1.0_vendor.so|4b18d104ac648a020c7e787e288cd1e6acd72698
 vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so|df808ee9a6f81fa075198cde4d4aa25169b41dd4
 vendor/lib64/libDRPlugin.so|257ad09b57f10e64b1442b98104d31fabe155065
 vendor/lib64/lib_drplugin_server.so|3d940d3a61bf1f229d3cd51be4ec9e59dbf6dcfe
@@ -321,7 +321,7 @@ vendor/lib64/libslimclient.so|e00e9e0cc5322b4f17f86787e2a2a3047ff88236
 vendor/lib64/libulp2.so|ffb48f0b8128d8a12d505f196ad95cff31d85392
 vendor/lib64/libxtadapter.so|99e97f50ef1de7246a0026cdbbc47fc42697a93c
 vendor/lib64/libxtwifi_ulp_adaptor.so|a6535178899ec4c59ed1d79b67245bc48838a79a
-vendor/lib64/vendor.qti.gnss@1.0_vendor.so|6d0f4247dd7601b3cfccf4e24ab0182dcc84edfa
+vendor/lib64/vendor.qti.gnss@1.0_vendor.so|597887850277b078224560138b75f277ca4628c3
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
