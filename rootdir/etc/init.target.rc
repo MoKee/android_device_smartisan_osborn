@@ -72,7 +72,7 @@ on fs
     write /sys/kernel/boot_adsp/boot 1
 
 on post-fs
-    start qseecomd
+    start vendor.qseecomd
     exec - system system -- /vendor/bin/init.qti.qseecomd.sh
     write /dev/ipa 1
 
@@ -90,7 +90,7 @@ on post-fs-data
     mkdir /data/misc/tloc 0700 system drmrpc
 
 on boot
-    start rmt_storage
+    start vendor.rmt_storage
     start rfs_access
 
     # Wifi firmware reload path
@@ -144,13 +144,13 @@ on property:sys.boot_completed=1
     setprop sys.io.scheduler "bfq"
 
 #Peripheral manager
-service per_mgr /system/vendor/bin/pm-service
+service vendor.per_mgr /system/vendor/bin/pm-service
     class core
     user system
     group system
     ioprio rt 4
 
-service per_proxy /system/vendor/bin/pm-proxy
+service vendor.per_proxy /system/vendor/bin/pm-proxy
     class core
     user system
     group system
@@ -162,10 +162,10 @@ service ifaad /system/bin/ifaad
     group system
 
 on property:init.svc.per_mgr=running
-    start per_proxy
+    start vendor.per_proxy
 
 on property:sys.powerctl=*
-    stop per_proxy
+    stop vendor.per_proxy
 
 #start camera server as daemon
 #service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -199,7 +199,7 @@ on property:sys.powerctl=*
 #on property:sys.boot_completed=1
 #    start qrngp
 #
-service qseecomd /vendor/bin/qseecomd
+service vendor.qseecomd /vendor/bin/qseecomd
    class core
    user root
    group root
@@ -213,7 +213,7 @@ service qseecomd /vendor/bin/qseecomd
 #   group system
 #   disabled
 #
-service thermal-engine /system/vendor/bin/thermal-engine
+service vendor.thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -230,7 +230,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
 #    class core
 #    oneshot
 #
-service time_daemon /system/vendor/bin/time_daemon
+service vendor.time_daemon /system/vendor/bin/time_daemon
    class late_start
    user root
    group root
@@ -240,7 +240,7 @@ service adsprpcd_root /system/bin/adsprpcd
    user media
    group media
 
-service adsprpcd /system/vendor/bin/adsprpcd audiopd
+service vendor.adsprpcd /system/vendor/bin/adsprpcd audiopd
    class main
    user media
    group media
@@ -317,13 +317,13 @@ service audiod /system/vendor/bin/audiod
 #    chown system drmrpc /sys/devices/f9966000.i2c/i2c-1/1-0020/secure_touch
 #
 #
-service imsqmidaemon /system/vendor/bin/imsqmidaemon
+service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
     group radio log diag
 
-service imsdatadaemon /system/vendor/bin/imsdatadaemon
+service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
@@ -371,7 +371,7 @@ service imsdatadaemon /system/vendor/bin/imsdatadaemon
 #   class core
 #   oneshot
 
-service energy-awareness /system/vendor/bin/energy-awareness
+service vendor.energy-awareness /system/vendor/bin/energy-awareness
     class main
     user system
     group system
@@ -382,7 +382,7 @@ service mdtpd /system/vendor/bin/mdtpd
     user root
     group system radio drmrpc
 
-service pd_mapper /system/vendor/bin/pd-mapper
+service vendor.pd_mapper /system/vendor/bin/pd-mapper
      class core
 
 #
@@ -399,9 +399,9 @@ service pd_mapper /system/vendor/bin/pd-mapper
 #   disabled
 
 on property:vendor.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+    start vendor.imsdatadaemon
 
-service ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
+service vendor.ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
    class main
    user system
    group radio diag inet log
@@ -414,11 +414,11 @@ service vendor.imsrcsservice /system/vendor/bin/imsrcsd
    disabled
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
+    start vendor.ims_rtp_daemon
     start vendor.imsrcsservice
 
 
-service ppd /system/vendor/bin/mm-pp-dpps
+service vendor.ppd /system/vendor/bin/mm-pp-dpps
     class late_start
     user system
     group system graphics
@@ -426,27 +426,27 @@ service ppd /system/vendor/bin/mm-pp-dpps
     disabled
 
 on property:init.svc.surfaceflinger=stopped
-    stop ppd
+    stop vendor.ppd
 
 on property:init.svc.surfaceflinger=running
-    start ppd
+    start vendor.ppd
 
 on property:init.svc.surfaceflinger=restarting
-    stop ppd
+    stop vendor.ppd
 
 on property:init.svc.zygote=stopped
-    stop ppd
+    stop vendor.ppd
 
 on property:init.svc.zygote=running
-    start ppd
+    start vendor.ppd
 
 on property:init.svc.zygote=restarting
-    stop ppd
+    stop vendor.ppd
 
 on charger
     load_system_props
-    start qcom-post-boot
-    start hvdcp_opti
+    start vendor.qcom-post-boot
+    start vendor.hvdcp_opti
     setprop sys.usb.configfs 1
     start power_off_alarm
 
@@ -475,7 +475,7 @@ service seempd /system/bin/seempd
     group system sdcard_rw
     socket seempdw dgram 0666 system system
 
-service qfp-daemon /vendor/bin/qfp-daemon
+service vendor.qfp-daemon /vendor/bin/qfp-daemon
     class late_start
     user system
     group system drmrpc diag input
@@ -485,7 +485,7 @@ service tlocd /system/bin/tloc_daemon
     user system
     group drmrpc
 
-service hvdcp_opti /system/vendor/bin/hvdcp_opti
+service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
      class main
      user root
      group system wakelock
