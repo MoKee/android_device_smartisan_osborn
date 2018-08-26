@@ -23,10 +23,6 @@
 
 $(call inherit-product, vendor/smartisan/osborn/osborn-vendor.mk)
 
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2018-04-05
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
