@@ -56,8 +56,6 @@ vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
-vendor/lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
-vendor/lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
 vendor/lib64/libaudcal.so
 vendor/lib64/libqtigef.so
 vendor/lib64/soundfx/libqcbassboost.so
@@ -113,13 +111,6 @@ etc/drc/drc_cfg_5.1.txt:vendor/etc/drc/drc_cfg_5.1.txt
 etc/drc/drc_cfg_AZ.txt:vendor/etc/drc/drc_cfg_AZ.txt
 etc/surround_sound_3mic/surround_sound_rec_5.1.cfg:vendor/etc/surround_sound_3mic/surround_sound_rec_5.1.cfg
 etc/surround_sound_3mic/surround_sound_rec_AZ.cfg:vendor/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
-
-# Bluetooth
--vendor/lib/libbtnv.so
--vendor/lib64/libbtnv.so
-bin/btnvtool:vendor/bin/btnvtool
-bin/hci_qcomm_init:vendor/bin/hci_qcomm_init
-bin/wcnss_filter:vendor/bin/wcnss_filter
 
 # Bluetooth firmware
 etc/firmware/nvm_tlv.bin:vendor/firmware/nvm_tlv.bin
