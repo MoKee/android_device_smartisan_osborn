@@ -218,8 +218,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
 
-PRODUCT_PACKAGES += \
-    SmartisanPocketMode
+# PRODUCT_PACKAGES += \
+#     SmartisanPocketMode
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
@@ -287,8 +287,8 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.osborn
 
 # LiveDisplay native
-PRODUCT_PACKAGES += \
-    vendor.mokee.livedisplay@1.0-service-sdm
+# PRODUCT_PACKAGES += \
+#     vendor.mokee.livedisplay@1.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -410,11 +410,11 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service
 
 # SOTER (Fingerprint support for WeChat Payment)
-PRODUCT_PACKAGES += \
-    soter
+# PRODUCT_PACKAGES += \
+#     soter
 
-PRODUCT_BOOT_JARS += \
-    soter
+# PRODUCT_BOOT_JARS += \
+#     soter
 
 # Telephony
 PRODUCT_PACKAGES += \
