@@ -27,4 +27,4 @@ LOCAL_SRC_FILES := \
 
 LOCAL_JAVA_LIBRARIES := bouncycastle okhttp
 
-include $(BUILD_JAVA_LIBRARY)
+# include $(BUILD_JAVA_LIBRARY)
