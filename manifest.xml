@@ -447,7 +447,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+<!--     <hal format="hidl">
         <name>vendor.mokee.livedisplay</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -455,8 +455,8 @@
             <name>IColor</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="hidl">
+    </hal> -->
+<!--     <hal format="hidl">
         <name>vendor.mokee.power</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -464,7 +464,7 @@
             <name>IMoKeePower</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl">
         <name>vendor.nxp.hardware.nfc</name>
         <transport>hwbinder</transport>
