@@ -50,39 +50,23 @@ extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 extract "$MY_DIR"/proprietary-files-qc.txt "$SRC_QC" "$SECTION"
 extract "$MY_DIR"/proprietary-files-qc-perf.txt "$SRC_QC" "$SECTION"
 
-function fix_fpc () {
-    sed -i \
-        's/\x00fpcfingerprint\x00/\x00fingerprint\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
-}
-
-fix_fpc lib64/hw/fingerprint.fpc.so
-
-function fix_goodix () {
-    sed -i \
-        's/\x00goodixfingerprint\x00/\x00fingerprint\x00\x00\x00\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
-}
-
-fix_goodix lib64/hw/fingerprint.goodix.so
-
-function fix_vendor () {
-    sed -i \
-        "s/\/system\/$1\//\/vendor\/$1\//g" \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$2"
-}
+BLOB_ROOT="$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
 
 # Audio
-fix_vendor etc lib/hw/audio.primary.sdm660.so
-fix_vendor etc lib/libacdbloader.so
-fix_vendor etc lib64/hw/audio.primary.sdm660.so
-fix_vendor etc lib64/libacdbloader.so
-fix_vendor lib lib/hw/audio.primary.sdm660.so
-fix_vendor lib lib64/hw/audio.primary.sdm660.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib/hw/audio.primary.sdm660.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib/libacdbloader.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib64/hw/audio.primary.sdm660.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib64/libacdbloader.so
+sed -i 's|/system/lib/|/vendor/lib/|g' $BLOB_ROOT/vendor/lib/hw/audio.primary.sdm660.so
+sed -i 's|/system/lib/|/vendor/lib/|g' $BLOB_ROOT/vendor/lib64/hw/audio.primary.sdm660.so
 
 # Camera
-fix_vendor etc lib/hw/camera.sdm660.so
-fix_vendor etc lib/libmmcamera2_sensor_modules.so
-fix_vendor etc lib/libmms_hal_vstab.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib/hw/camera.sdm660.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib/libmmcamera2_sensor_modules.so
+sed -i 's|/system/etc/|/vendor/etc/|g' $BLOB_ROOT/vendor/lib/libmms_hal_vstab.so
+
+# Fingerprint
+sed -i 's|\x00fpcfingerprint\x00|\x00fingerprint\x00\x00\x00\x00|' $BLOB_ROOT/vendor/lib64/hw/fingerprint.fpc.so
+sed -i 's|\x00goodixfingerprint\x00|\x00fingerprint\x00\x00\x00\x00\x00\x00\x00|' $BLOB_ROOT/vendor/lib64/hw/fingerprint.goodix.so
 
 "$MY_DIR"/setup-makefiles.sh
