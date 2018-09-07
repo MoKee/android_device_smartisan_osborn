@@ -262,7 +262,7 @@ PRODUCT_PACKAGES += \
 
 # IFAA (Fingerprint support for Alipay)
 PRODUCT_BOOT_JARS += \
-    ifaa_fw
+    ifaa_manager
 
 # Input
 PRODUCT_COPY_FILES += \

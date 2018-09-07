@@ -156,11 +156,6 @@ service per_proxy /system/vendor/bin/pm-proxy
     group system
     disabled
 
-service ifaad /system/bin/ifaad
-    class late_start
-    user  system
-    group system
-
 on property:init.svc.per_mgr=running
     start per_proxy
 

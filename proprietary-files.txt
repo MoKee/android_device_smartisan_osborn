@@ -494,13 +494,17 @@ lib64/libgoodixfingerprintd_binder.so:vendor/lib64/libgoodixfingerprintd_binder.
 vendor/lib64/libqti_performance.so
 
 # IFAA (Fingerprint support for Alipay)
--framework/ifaa_fw.jar
-bin/ifaad
-lib/libifaa_daemon.so
-lib/libifaa_jni.so
-lib64/lib_ifaa_tac.so
-lib64/libifaa_daemon.so
-lib64/libifaa_jni.so
+-app/ifaa_service/ifaa_service.apk|cbf4c9f70c78be2984447d3a481756264ce01b07
+-framework/ifaa_manager.jar|dc7864ba1be6d6e51f5c33ea507c4147c60bb4bc
+lib/libifaa_jni.so|fd0a9d09e6bd5e52836df3340bd94eec13881300
+lib/libifaa_manager_interface.so|95de34dddcc9e071a118281691ea5d4910700bb2
+lib/vendor.qti.hardware.ifaa@1.0.so|1968c09b160b4b7c43a5b277cc18355a5f2fca27
+lib64/lib_ifaa_tac.so|58eeecbb745ff5acc33653549412d5f5fd11737e
+lib64/libifaa_jni.so|423949372408c9987ee41f507ff03c3427284cb8
+lib64/libifaa_manager_interface.so|ec14d5accab10b3fd42d29e5bdf1bea1278302f5
+lib64/vendor.qti.hardware.ifaa@1.0.so|059ddd16645dad4ff659acc702114c8718ea057f
+vendor/bin/hw/vendor.qti.hardware.ifaa@1.0-service|acc4aa57bc6634118e1591a3300eb83ea07e9ada
+vendor/etc/init/vendor.qti.hardware.ifaa@1.0-service.rc|35066d98b517d12d71c3b412c22250a68b0f819e
 
 # Logic volume
 -sbin/dm-tool;rootfs
