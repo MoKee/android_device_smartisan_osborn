@@ -24,7 +24,6 @@ debug.gralloc.enable_fb_ubwc=1
 dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
-debug.sf.recomputecrop=0
 
 # Audio
 af.fast_track_multiplier=1
@@ -63,11 +62,21 @@ audio.noisy.broadcast.delay=600
 persist.audio.hifi.int_codec=true
 audio.offload.pstimeout.secs=3
 
+#Disable Skip Validate
+sdm.debug.disable_skip_validate=1
+
+#Property to enable display default color mode
+vendor.display.enable_default_color_mode=1
+
+# Display Properties as per treble compliance
+vendor.gralloc.enable_fb_ubwc=1
+vendor.display.disable_skip_validate=1
+
 #ro.hdmi.enable=true
 #
 # system props for the cne module
 #
-persist.cne.feature=1
+persist.vendor.cne.feature=1
 
 #system props for the MM modules
 media.stagefright.enable-player=true
@@ -79,7 +88,7 @@ mmp.enable.3g2=true
 media.aac_51_output_enabled=true
 mm.enable.smoothstreaming=true
 #codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE DSD
-mm.enable.qcom_parser=13631487
+vendor.mm.enable.qcom_parser=13631487
 persist.mm.enable.prefetch=true
 persist.media.treble_omx=false
 
@@ -98,15 +107,11 @@ vidc.enc.dcvs.extra-buff-count=2
 #Netflix custom property
 ro.netflix.bsp_rev=Q660-13149-1
 
-#codecs:(PARSER_)AAC AC3 AMR_NB AMR_WB ASF AVI DTS FLV 3GP 3G2 MKV MP2PS MP2TS MP3 OGG QCP WAV FLAC AIFF APE
-mm.enable.qcom_parser=1048559
-
 #
 # system props for the data modules
 #
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
-persist.data.mode=concurrent
+ro.vendor.use_data_netmgrd=true
+persist.vendor.data.mode=concurrent
 #system props for time-services
 persist.timed.enable=true
 
@@ -123,30 +128,16 @@ persist.bt.a2dp.aac_disable=true
 
 # System property for cabl
 ro.qualcomm.cabl=0
+ro.vendor.display.cabl=0
 
 #
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
 
-# SMARTISAN_BEGIN (CCM2005:CDMA SMS sent over TCH)
-# 2017-5-15 liulu:create the feature M0164744
-# 2017-10-11 guochenggang: porting to osborn-common M0191861
-# CDMA sms sent over TCH M0164744
-persist.radio.force_on_dc=true
-# SMARTISAN_END (CCM2005:CDMA SMS sent over TCH)
-
-# SMARTISAN_BEGIN (CCM5021:Enable modem save power property)
-# 2017-12-27 liulu:enable the property M0213013
-persist.radio.add_power_save=1
-# SMARTISAN_END (CCM5021:Enable modem save power property)
-
 #Simulate sdcard on /data/media
 #
 persist.fuse_sdcard=true
-
-#system prop for Bluetooth SOC type
-qcom.bluetooth.soc=cherokee
 
 #system prop for wipower support
 ro.bluetooth.emb_wp_mode=true
@@ -157,15 +148,10 @@ ro.bt.bdaddr_path=/persist/bd_addr.txt
 #snapdragon value add features
 #
 
+#set AudioFlinger client heap size
+ro.af.client_heap_size_kbyte=7168
+
 #system prop for RmNet Data
-persist.rmnet.data.enable=true
-persist.data.wda.enable=true
-persist.data.df.dl_mode=5
-persist.data.df.ul_mode=5
-persist.data.df.agg.dl_pkt=10
-persist.data.df.agg.dl_size=4096
-persist.data.df.mux_count=8
-persist.data.df.iwlan_mux=9
 persist.data.df.dev_name=rmnet_usb0
 
 #
@@ -210,7 +196,7 @@ ro.hwui.text_large_cache_height=2048
 qemu.hw.mainkeys=0
 
 #Bringup properties
-persist.radio.atfwd.start=true
+persist.vendor.radio.atfwd.start=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
@@ -234,67 +220,16 @@ camera.aux.packagelist=org.codeaurora.snapcam
 #disable UBWC for camera
 persist.camera.preview.ubwc=0
 
-# Create zram disk
-ro.vendor.qti.config.zram=true
-
 #set maximum supported adapter voltage
 persist.chg.max_volt_mv=9000
 
-#Property to enable display default color mode
-vendor.display.enable_default_color_mode=1
+#system prop for Bluetooth SOC type
+vendor.bluetooth.soc=cherokee
+ro.bluetooth.library_name=libbluetooth_qti.so
+persist.vendor.btstack.enable.splita2dp=true
+persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-aac
 
 # Property for backup NTP Server
 persist.backup.ntpServer="0.pool.ntp.org"
 # enable IZat OptInApp overlay
 persist.vendor.overlay.izat.optin=rro
-
-#Disable Skip Validate
-sdm.debug.disable_skip_validate=1
-
-#Headset button input device name
-ro.system.headsetinput=sdm660-snd-card-skush Button Jack
-
-#enable drm service
-drm.service.enabled=true
-
-# Multisim config
-persist.radio.multisim.config=dsds
-# Default network mode
-ro.telephony.default_network=22,22
-# Ap defined ecclist
-ro.ril.ecclist=911,112,000,08,110,118,119,999,120,122
-# Redirecting party number feature
-persist.radio.redir_party_num=0
-# Enable RAT in operator searching result
-persist.radio.rat_on=combine
-#Report PS operator name for SRLTE
-persist.radio.sglte.eons_domain=ps
-# Enable report reject cause when REG rejected permanently
-persist.radio.lte_vrte_ltd=1
-# Default APN protocal
-ro.radio.apn.protocal=IPV4V6
-# bar fake cell feature
-ro.radio.bar.fake.cell.feature=1
-
-#Enable IMS
-persist.radio.calls.on.ims=true
-persist.radio.jbims=1
-persist.radio.vrte_logic=1
-
-# SMARTISAN_BEGIN (CCM2016:FAKE BASE STATION DETECTION)
-# 2017-06-27 wangyun:create the feature M0170767
-# 2017-11-17 guochenggang: enable the property
-# Fake Base Station Detection M0170767
-persist.radio.bar_fake_gcell=true
-# SMARTISAN_END (CCM2016:FAKE BASE STATION DETECTION)
-
-# SMARTISAN_BEGIN (CCM5012:RIL CLIR RETURN)
-# 2017-09-13 hubin:added. M0186977
-persist.radio.facnotsup_as_nonw=1
-# SMARTISAN_END (CCM5012:RIL CLIR RETURN)
-
-#nfc fw update not allowed by default
-persist.fw.update.allowed=0
-
-# CA config
-ro.radio.ca.enable=true
