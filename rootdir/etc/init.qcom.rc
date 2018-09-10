@@ -241,9 +241,6 @@ on post-fs-data
     mkdir /data/misc/camera 0770 camera camera
     mkdir /data/misc/camera/raw/ 0770 camera camera
 
-    mkdir /data/media 0770 media_rw media_rw
-    chown media_rw media_rw /data/media
-
     mkdir /data/misc/ipa 0700 net_admin net_admin
     #Create directory for tftp
     mkdir /data/tombstones 0771 system system
