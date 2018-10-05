@@ -6,7 +6,6 @@ vendor/lib/libfeedbackhandler.so
 vendor/lib/libperfgluelayer.so
 vendor/lib/libqti-gt-prop.so
 vendor/lib/libqti-iopd-client.so
-vendor/lib/libqti-iopd.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libqti-perfd.so
 vendor/lib/libqti-util.so
@@ -18,7 +17,6 @@ vendor/lib64/libfeedbackhandler.so
 vendor/lib64/libperfgluelayer.so
 vendor/lib64/libqti-gt-prop.so
 vendor/lib64/libqti-iopd-client.so
-vendor/lib64/libqti-iopd.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti-perfd.so
 vendor/lib64/libqti-util.so

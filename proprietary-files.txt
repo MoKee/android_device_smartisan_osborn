@@ -63,31 +63,6 @@ vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 
 # Audio ACDB
-etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
-etc/acdbdata/MTP/MTP_General_cal.acdb
-etc/acdbdata/MTP/MTP_Global_cal.acdb
-etc/acdbdata/MTP/MTP_Handset_cal.acdb
-etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
-etc/acdbdata/MTP/MTP_Headset_cal.acdb
-etc/acdbdata/MTP/MTP_Speaker_cal.acdb
-etc/acdbdata/MTP/MTP_workspaceFile.qwsp
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Bluetooth_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Codec_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_General_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Global_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Handset_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Hdmi_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Headset_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_Speaker_cal.acdb
-etc/acdbdata/MTP/sdm660-tavil-snd-card/MTP_WCD9340_workspaceFile.qwsp
-etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
-etc/acdbdata/QRD/QRD_General_cal.acdb
-etc/acdbdata/QRD/QRD_Global_cal.acdb
-etc/acdbdata/QRD/QRD_Handset_cal.acdb
-etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
-etc/acdbdata/QRD/QRD_Headset_cal.acdb
-etc/acdbdata/QRD/QRD_Speaker_cal.acdb
-etc/acdbdata/QRD/QRD_workspaceFile.qwsp
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Bluetooth_cal.acdb
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_General_cal.acdb
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Global_cal.acdb
@@ -96,14 +71,6 @@ etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Hdmi_cal.acdb
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Headset_cal.acdb
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Speaker_cal.acdb
 etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_workspaceFile.qwsp
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Bluetooth_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_General_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Global_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Handset_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Hdmi_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Headset_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_Speaker_cal.acdb
-etc/acdbdata/QRD/sdm660-tasha-skus-snd-card/QRD_SKUS_workspaceFile.qwsp
 etc/acdbdata/adsp_avs_config.acdb
 
 # Audio etc
@@ -412,18 +379,6 @@ etc/sensor_denoise_table/imx386/ISO800_2944x2944.ncf:vendor/etc/sensor_denoise_t
 etc/sensor_denoise_table/imx386/ISO800_3968x2232.ncf:vendor/etc/sensor_denoise_table/imx386/ISO800_3968x2232.ncf
 etc/sensor_denoise_table/imx386/ISO800_3968x2976.ncf:vendor/etc/sensor_denoise_table/imx386/ISO800_3968x2976.ncf
 
-# Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw:vendor/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw:vendor/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw:vendor/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw:vendor/firmware/cpp_firmware_v1_4_0.fw
-etc/firmware/cpp_firmware_v1_5_0.fw:vendor/firmware/cpp_firmware_v1_5_0.fw
-etc/firmware/cpp_firmware_v1_5_2.fw:vendor/firmware/cpp_firmware_v1_5_2.fw
-etc/firmware/cpp_firmware_v1_6_0.fw:vendor/firmware/cpp_firmware_v1_6_0.fw
-etc/firmware/cpp_firmware_v1_8_0.fw:vendor/firmware/cpp_firmware_v1_8_0.fw
-etc/firmware/cpp_firmware_v1_10_0.fw:vendor/firmware/cpp_firmware_v1_10_0.fw
-etc/firmware/cpp_firmware_v1_12_0.fw:vendor/firmware/cpp_firmware_v1_12_0.fw
-
 # Camera sensors
 vendor/lib/libmmcamera_isp_abf48.so
 vendor/lib/libmmcamera_isp_aec_bg_stats47.so
@@ -470,19 +425,12 @@ vendor/lib/libmmcamera_isp_sce40.so
 vendor/lib/libmmcamera_isp_snr47.so
 vendor/lib/libmmcamera_isp_sub_module.so
 
-# Charger
-bin/hvdcp_opti:vendor/bin/hvdcp_opti
-
-# DRM
-vendor/lib/liboemcrypto.so
-
 # Fingerprint sensor
 lib64/hw/goodixfingerprint.default.so:vendor/lib64/hw/fingerprint.goodix.so
 lib64/hw/fpcfingerprint.sdm660.so:vendor/lib64/hw/fingerprint.fpc.so
 lib64/libgf_ca.so:vendor/lib64/libgf_ca.so
 lib64/libgf_hal.so:vendor/lib64/libgf_hal.so
 lib64/libgoodixfingerprintd_binder.so:vendor/lib64/libgoodixfingerprintd_binder.so
-vendor/lib64/libqti_performance.so
 
 # IFAA (Fingerprint support for Alipay)
 -framework/ifaa_fw.jar
@@ -509,145 +457,9 @@ bin/pm-service:vendor/bin/pm-service
 vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
-# Postprocessing
-vendor/bin/mm-pp-dpps
-vendor/lib64/libdisp-aba.so
-
-# QMI
-bin/irsc_util:vendor/bin/irsc_util
-etc/permissions/qti_permissions.xml
-vendor/bin/pd-mapper
-vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_helper.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-vendor/lib/libsmemlog.so
-vendor/lib64/libdiag.so
-vendor/lib64/libdsi_netctrl.so
-vendor/lib64/libdsutils.so
-vendor/lib64/libidl.so
-vendor/lib64/libqcci_legacy.so
-vendor/lib64/libqdi.so
-vendor/lib64/libqdp.so
-vendor/lib64/libqmi.so
-vendor/lib64/libqmi_cci.so
-vendor/lib64/libqmi_client_helper.so
-vendor/lib64/libqmi_client_qmux.so
-vendor/lib64/libqmi_common_so.so
-vendor/lib64/libqmi_csi.so
-vendor/lib64/libqmi_encdec.so
-vendor/lib64/libqmiservices.so
-vendor/lib64/libsmemlog.so
-
-# Radio
--app/QtiTelephonyService/QtiTelephonyService.apk
--app/embms/embms.apk
--app/shutdownlistener/shutdownlistener.apk
--framework/qcrilhook.jar
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-bin/ipacm-diag:vendor/bin/ipacm-diag
-bin/netmgrd:vendor/bin/netmgrd
-bin/radish:vendor/bin/radish
-bin/rmt_storage:vendor/bin/rmt_storage
-bin/tftp_server:vendor/bin/tftp_server
-etc/data/dsi_config.xml
-etc/data/netmgr_config.xml
-etc/permissions/embms.xml
-etc/permissions/qcrilhook.xml
-etc/permissions/telephonyservice.xml
-framework/QtiTelephonyServicelibrary.jar
-framework/embmslibrary.jar
-vendor/bin/qti
-vendor/lib/libmdmdetect.so
-vendor/lib64/libconfigdb.so
-vendor/lib64/liblqe.so
-vendor/lib64/libmdmdetect.so
-vendor/lib64/libnetmgr.so
-vendor/lib64/libpdmapper.so
-vendor/lib64/libpdnotifier.so
-vendor/lib64/libqcmaputils.so
-vendor/lib64/libril-qc-ltedirectdisc.so
-vendor/lib64/libril-qc-qmi-1.so
-vendor/lib64/libril-qc-radioconfig.so
-vendor/lib64/librilqmiservices.so
-vendor/lib64/libsystem_health_mon.so
-vendor/qcril.db
-
-# Radio - IMS
-# -vendor/app/ims/ims.apk
--vendor/app/imssettings/imssettings.apk
-bin/ims_rtp_daemon:vendor/bin/ims_rtp_daemon
-bin/imscmservice:vendor/bin/imscmservice
-bin/imsdatadaemon:vendor/bin/imsdatadaemon
-bin/imsqmidaemon:vendor/bin/imsqmidaemon
-etc/permissions/imscm.xml
-etc/permissions/qti-vzw-ims-internal.xml
-framework/imscmlibrary.jar
-framework/rcsimssettings.jar
-vendor/framework/qti-vzw-ims-internal.jar
-vendor/lib64/lib-dplmedia.so
-vendor/lib64/lib-ims-rcscmjni.so
-vendor/lib64/lib-imsSDP.so
-vendor/lib64/lib-imscamera.so
-vendor/lib64/lib-imsdpl.so
-vendor/lib64/lib-imsqimf.so
-vendor/lib64/lib-imsrcs.so
-vendor/lib64/lib-imsrcscm.so
-vendor/lib64/lib-imsrcscmclient.so
-vendor/lib64/lib-imsrcscmservice.so
-vendor/lib64/lib-imss.so
-vendor/lib64/lib-imsvt.so
-vendor/lib64/lib-imsxml.so
-vendor/lib64/lib-rcsimssjni.so
-vendor/lib64/lib-rcsjni.so
-vendor/lib64/lib-rtpcommon.so
-vendor/lib64/lib-rtpcore.so
-vendor/lib64/lib-rtpdaemoninterface.so
-vendor/lib64/lib-rtpsl.so
-vendor/lib64/libimscamera_jni.so
-vendor/lib64/libimsmedia_jni.so
-vendor/lib64/librcc.so
-vendor/lib64/libvoice-svc.so
-
 # Sensors
-bin/sensors.qcom:vendor/bin/sensors.qcom
 etc/sensors/hals.conf:vendor/etc/sensors/hals.conf
 etc/sensors/sensor_def_qcomdev.conf:vendor/etc/sensors/sensor_def_qcomdev.conf
-vendor/lib/hw/activity_recognition.sdm660.so
-vendor/lib/libsensor1.so
-vendor/lib/libsensor_reg.so
-vendor/lib/sensor_calibrate.so
-vendor/lib/sensors.ssc.so
-vendor/lib64/hw/activity_recognition.sdm660.so
-vendor/lib64/libsensor1.so
-vendor/lib64/libsensor_reg.so
-vendor/lib64/sensor_calibrate.so
-vendor/lib64/sensors.ssc.so
-
-# Signed graphics firmware
-etc/firmware/a512_zap.b00:vendor/firmware/a512_zap.b00
-etc/firmware/a512_zap.b01:vendor/firmware/a512_zap.b01
-etc/firmware/a512_zap.b02:vendor/firmware/a512_zap.b02
-etc/firmware/a512_zap.elf:vendor/firmware/a512_zap.elf
-etc/firmware/a512_zap.mdt:vendor/firmware/a512_zap.mdt
-etc/firmware/a530_gpmu.fw2:vendor/firmware/a530_gpmu.fw2
-etc/firmware/a530_pfp.fw:vendor/firmware/a530_pfp.fw
-etc/firmware/a530_pm4.fw:vendor/firmware/a530_pm4.fw
 
 # Thermal
 etc/thermal-engine.conf:vendor/etc/thermal-engine.conf
-
-# Wi-Fi
-bin/cnss-daemon:vendor/bin/cnss-daemon
-bin/cnss_diag:vendor/bin/cnss_diag
