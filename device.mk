@@ -236,7 +236,12 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
     android.hardware.gnss@1.0-service-qti \
     libgnss \
-    libgnsspps
+    libgnsspps \
+    libgps.utils \
+    libloc_core \
+    libloc_pla \
+    libloc_stub \
+    liblocation_api
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/apdr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/apdr.conf \
