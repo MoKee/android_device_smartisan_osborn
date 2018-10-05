@@ -40,32 +40,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "vendor_init.h"
 #include "property_service.h"
 
-#define FP_MFR_FILE "/sys/hwinfo/FP_MFR"
 #define BOOT_REASON_FILE "/proc/sys/kernel/boot_reason"
 
 using android::base::Trim;
 using android::base::ReadFileToString;
 using android::init::property_set;
-
-void init_fingerprint_properties()
-{
-    std::string fp_mfr;
-    if (ReadFileToString(FP_MFR_FILE, &fp_mfr)) {
-        LOG(INFO) << "Loading Fingerprint HAL for manufacturer: " << fp_mfr;
-        if (Trim(fp_mfr) == "FP_MFR=fpc") {
-            property_set("ro.hardware.fingerprint", "fpc");
-        }
-        else if (Trim(fp_mfr) == "FP_MFR=goodix") {
-            property_set("ro.hardware.fingerprint", "goodix");
-        }
-        else {
-            LOG(ERROR) << "Unsupported fingerprint sensor: " << fp_mfr;
-        }
-    }
-    else {
-        LOG(ERROR) << "Failed to detect sensor version";
-    }
-}
 
 void init_alarm_boot_properties()
 {
@@ -132,6 +111,5 @@ void init_alarm_boot_properties()
 
 void vendor_load_properties() {
     LOG(INFO) << "Loading vendor specific properties";
-    init_fingerprint_properties();
     init_alarm_boot_properties();
 }

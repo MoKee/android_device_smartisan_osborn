@@ -495,3 +495,5 @@ service smcinvoked /system/bin/smcinvoked
    user system
    group system
 
+on property:ro.boot.fingerprint.id=*
+    setprop ro.hardware.fingerprint ${ro.boot.fingerprint.id}
