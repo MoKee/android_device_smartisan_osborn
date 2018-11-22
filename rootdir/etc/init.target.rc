@@ -161,7 +161,7 @@ service ifaad /system/bin/ifaad
     user  system
     group system
 
-on property:init.svc.per_mgr=running
+on property:init.svc.vendor.per_mgr=running
     start per_proxy
 
 on property:sys.powerctl=*
