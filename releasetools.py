@@ -19,6 +19,10 @@ def FullOTA_Assertions(info):
   AddModemAssertion(info)
   return
 
+def FullOTA_InstallBegin(info):
+  KillMagisk(info)
+  return
+
 def FullOTA_InstallEnd(info):
   AddDeunifyScript(info)
   return
@@ -40,6 +44,11 @@ def AddModemAssertion(info):
       cmd = 'assert(osborn.verify_modem("' + version + '") == "1");'
       info.script.AppendExtra(cmd)
   return
+
+def KillMagisk(info):
+  info.script.Mount("/system")
+  info.script.AppendExtra('delete("/system/addon.d/99-magisk.sh");')
+  info.script.Unmount("/system")
 
 def AddDeunifyScript(info):
   info.script.Mount("/system")

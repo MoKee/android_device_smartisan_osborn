@@ -15,6 +15,14 @@
 # limitations under the License.
 #
 
+cat << EOF >> pre.txt
+if !is_mounted("/system") then
+mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system", "");
+endif;
+delete("/system/addon.d/99-magisk.sh");
+unmount("/system");
+EOF
+
 cat << EOF >> post.txt
 package_extract_file("deunify.sh", "/tmp/deunify.sh");
 set_metadata("/tmp/deunify.sh", "uid", 0, "gid", 0, "mode", 0755);
