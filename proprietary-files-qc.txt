@@ -733,13 +733,13 @@ vendor/lib/hw/activity_recognition.sdm660.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/sensor_calibrate.so
-vendor/lib/sensors.ssc.so
+vendor/lib/sensors.ssc.so|ddf01a6922e2753919795d65edc90f2a2d010961
 vendor/lib/vendor.qti.hardware.sensorscalibrate@1.0.so
 vendor/lib64/hw/activity_recognition.sdm660.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
 vendor/lib64/sensor_calibrate.so
-vendor/lib64/sensors.ssc.so
+vendor/lib64/sensors.ssc.so|d2597e2acaa3197bdc23acf9767c4b932726d317
 vendor/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
 
 # Thermal
