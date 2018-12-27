@@ -211,10 +211,10 @@ public class SoterKeyStoreKeyPairRSAGeneratorSpi extends KeyPairGeneratorSpi {
                 // Check that user authentication related parameters are acceptable. This method
                 // will throw an IllegalStateException if there are issues (e.g., secure lock screen
                 // not set up).
-                KeymasterUtils.addUserAuthArgs(new KeymasterArguments(),
+                KeymasterUtils.addUserAuthArgs(new KeymasterArguments(), new SoterUserAuthArgs(mSpec,
                                 mSpec.isUserAuthenticationRequired(),
                                 mSpec.getUserAuthenticationValidityDurationSeconds(), false, true,
-                                GateKeeper.INVALID_SECURE_USER_ID);
+                                GateKeeper.INVALID_SECURE_USER_ID));
             } catch (IllegalArgumentException | IllegalStateException e) {
                 throw new InvalidAlgorithmParameterException(e);
             }
@@ -321,10 +321,10 @@ public class SoterKeyStoreKeyPairRSAGeneratorSpi extends KeyPairGeneratorSpi {
         args.addEnums(KeymasterDefs.KM_TAG_PADDING, mKeymasterSignaturePaddings);
         args.addEnums(KeymasterDefs.KM_TAG_DIGEST, mKeymasterDigests);
 
-        KeymasterUtils.addUserAuthArgs(args,
+        KeymasterUtils.addUserAuthArgs(args, new SoterUserAuthArgs(mSpec,
                         mSpec.isUserAuthenticationRequired(),
                         mSpec.getUserAuthenticationValidityDurationSeconds(), false, true,
-                        GateKeeper.INVALID_SECURE_USER_ID);
+                        GateKeeper.INVALID_SECURE_USER_ID));
         if(mSpec.getKeyValidityStart() != null) {
             args.addDate(KeymasterDefs.KM_TAG_ACTIVE_DATETIME, mSpec.getKeyValidityStart());
         }
@@ -752,5 +752,69 @@ public class SoterKeyStoreKeyPairRSAGeneratorSpi extends KeyPairGeneratorSpi {
         converter.order(ByteOrder.nativeOrder());
         converter.putInt(value);
         return converter.array();
+    }
+
+    private class SoterUserAuthArgs implements UserAuthArgs {
+
+        private final KeyGenParameterSpec mSpec;
+        private final boolean mUserAuthenticationRequired;
+        private final int mUserAuthenticationValidityDurationSeconds;
+        private final boolean mUserAuthenticationValidWhileOnBody;
+        private final boolean mInvalidatedByBiometricEnrollment;
+        private final long mBoundToSpecificSecureUserId;
+
+        private SoterUserAuthArgs(KeyGenParameterSpec spec,
+            boolean userAuthenticationRequired,
+            int userAuthenticationValidityDurationSeconds,
+            boolean userAuthenticationValidWhileOnBody,
+            boolean invalidatedByBiometricEnrollment,
+            long boundToSpecificSecureUserId) {
+            mSpec = spec;
+            mUserAuthenticationRequired = userAuthenticationRequired;
+            mUserAuthenticationValidityDurationSeconds = userAuthenticationValidityDurationSeconds;
+            mUserAuthenticationValidWhileOnBody = userAuthenticationValidWhileOnBody;
+            mInvalidatedByBiometricEnrollment = invalidatedByBiometricEnrollment;
+            mBoundToSpecificSecureUserId = boundToSpecificSecureUserId;
+        }
+
+        @Override
+        public boolean isUserAuthenticationRequired() {
+            return mUserAuthenticationRequired;
+        }
+
+        @Override
+        public int getUserAuthenticationValidityDurationSeconds() {
+            return mUserAuthenticationValidityDurationSeconds;
+        }
+
+        @Override
+        public boolean isUserAuthenticationValidWhileOnBody() {
+            return mUserAuthenticationValidWhileOnBody;
+        }
+
+        @Override
+        public boolean isInvalidatedByBiometricEnrollment() {
+            return mInvalidatedByBiometricEnrollment;
+        }
+
+        @Override
+        public boolean isUserConfirmationRequired() {
+            return mSpec.isUserConfirmationRequired();
+        }
+
+        @Override
+        public long getBoundToSpecificSecureUserId() {
+            return mBoundToSpecificSecureUserId;
+        }
+
+        @Override
+        public boolean isUserPresenceRequired() {
+            return mSpec.isUserPresenceRequired();
+        }
+
+        @Override
+        public boolean isUnlockedDeviceRequired() {
+            return mSpec.isUnlockedDeviceRequired();
+        }
     }
 }
