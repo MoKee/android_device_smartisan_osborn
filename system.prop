@@ -149,9 +149,9 @@ persist.fuse_sdcard=true
 vendor.qcom.bluetooth.soc=cherokee
 
 #system prop for wipower support
-ro.bluetooth.emb_wp_mode=true
-ro.bluetooth.wipower=true
-ro.bt.bdaddr_path=/persist/bd_addr.txt
+ro.vendor.bluetooth.emb_wp_mode=true
+ro.vendor.bluetooth.wipower=true
+ro.vendor.bt.bdaddr_path=/persist/bd_addr.txt
 
 #
 #snapdragon value add features
