@@ -1,3 +1,13 @@
+on post-fs
+    chown vendor_rfs vendor_rfs /persist/rfs
+    chown vendor_rfs vendor_rfs /persist/rfs/msm
+    chown vendor_rfs vendor_rfs /persist/rfs/msm/adsp
+    chown vendor_rfs vendor_rfs /persist/rfs/msm/mpss
+    chown vendor_rfs vendor_rfs /persist/rfs/msm/mpss/server_check.txt
+    chown vendor_rfs vendor_rfs /persist/rfs/msm/slpi
+    chown vendor_rfs vendor_rfs /persist/rfs/shared
+    chown vendor_rfs vendor_rfs /persist/rfs/shared/server_info.txt
+
 on post-fs-data
     # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera/raw/ 0770 camera camera
