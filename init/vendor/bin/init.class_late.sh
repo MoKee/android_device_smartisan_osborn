@@ -1,5 +1,5 @@
 #!/vendor/bin/sh
-# Copyright (c) 2015,2018 The Linux Foundation. All rights reserved.
+# Copyright (c) 2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,17 +27,17 @@
 #
 
 #
-# Function to start sensors for SSC enabled platforms
+# start atfwd daemon
 #
-start_sensors()
-{
-    if [ -c /dev/msm_dsps -o -c /dev/sensors ]; then
-        chmod -h 775 /persist/sensors
-        chmod -h 664 /persist/sensors/sensors_settings
-        mkdir -p /persist/sensors/registry/registry
-        chown -h -R system.system /persist/sensors
-        start vendor.sensors.qti
-    fi
-}
+atfwd_status=`getprop persist.vendor.radio.atfwd.start`
+baseband=`getprop ro.baseband`
 
-start_sensors
+#Do not start atfwd for sda, apq, qcs
+case "$baseband" in
+    "apq" | "sda" | "qcs" )
+        setprop persist.vendor.radio.atfwd.start false;;
+    *)
+        if [ "$atfwd_status" = "true" ]; then
+            start atfwd
+        fi
+esac
