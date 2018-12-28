@@ -248,7 +248,6 @@ vendor/bin/garden_app|6127ea8179f4376c00c475c4a4d6dacd71bf1ef4
 vendor/bin/hw/vendor.qti.gnss@1.0-service|bdf23fe2af07c2afb74721023431446104fd828d
 vendor/bin/loc_launcher|df30e835d59122c40df1c40e0dc5bf08739faae7
 vendor/bin/lowi-server|3f83757f0e5e1622d58da885d20c2ce8d51b01a6
-vendor/bin/slim_daemon|8692890aa48cc7c47ebcbf7c3f6ed55bbb47b925
 vendor/bin/xtra-daemon|44bb65a84d4e09ed4819dd4d786a86195906119f
 vendor/bin/xtwifi-client|2a760401b8e82611666bc6547a215ac7031a3e4e
 vendor/bin/xtwifi-inet-agent|5dc0804347fc5bc90fa9d181e5f873b7a89c8ea4
