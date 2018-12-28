@@ -1,0 +1,34 @@
+on post-fs-data
+    # Create folder for mm-qcamera-daemon
+    mkdir /data/misc/camera/raw/ 0770 camera camera
+
+on boot
+    # Fingerprint
+    chmod 0644 /dev/goodix_fp
+    chown system system /dev/goodix_fp
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/hw_reset
+    chown system system /sys/bus/platform/devices/soc:fpc1020/hw_reset
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/irq
+    chown system system /sys/bus/platform/devices/soc:fpc1020/irq
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/regulator_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/regulator_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/device_prepare
+    chown system system /sys/bus/platform/devices/soc:fpc1020/device_prepare
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/clk_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/clk_enable
+    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/pinctl_set
+    chown system system /sys/bus/platform/devices/soc:fpc1020/pinctl_set
+
+    # Pocket Mode
+    chmod 0600 /proc/fingerprint/suspend
+    chown system system /proc/fingerprint/suspend
+
+service ifaad /system/bin/ifaad
+    class late_start
+    user  system
+    group system
+
+on property:ro.boot.fingerprint.id=*
+    setprop ro.hardware.fingerprint ${ro.boot.fingerprint.id}

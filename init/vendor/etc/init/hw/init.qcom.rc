@@ -28,6 +28,7 @@
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.msm.usb.configfs.rc
 import /vendor/etc/init/hw/init.target.rc
+import /vendor/etc/init/hw/init.target.device.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -195,9 +196,6 @@ on boot
     chown root system /sys/kernel/dload/dload_mode
     chmod 0660 /sys/kernel/dload/dload_mode
 
-    #ddr_freq dynamic change interface
-    chown system system /sys/module/kernel/ddr_freq_en/ddr_freq_en
-
     # Create directory used for display
     mkdir /persist/display 0770 system graphics
 
@@ -238,7 +236,6 @@ on post-fs-data
 
     #Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
-    mkdir /data/misc/camera/raw/ 0770 camera camera
 
     mkdir /data/misc/ipa 0700 net_admin net_admin
     #Create directory for tftp
@@ -958,12 +955,6 @@ service wifi-crda /vendor/bin/init.crda.sh
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-
-#SMARTISAN_BEGIN:(CCM5019:CMCC LTE throughput on b39 is poor )
-#2017-10-30 huangrunxi:turn up rps_cpus and tcp_limit_output_bytes like REF. M0193524
-    write /proc/sys/net/ipv4/tcp_limit_output_bytes 506072
-    write /sys/class/net/rmnet_data0/queues/rx-0/rps_cpus 7
-#SMARTISAN_END:(CCM5019:CMCC LTE throughput on b39 is poor )
 
 service qvop-daemon /vendor/bin/qvop-daemon
     class late_start

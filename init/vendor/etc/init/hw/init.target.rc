@@ -28,9 +28,6 @@
 #
 
 on early-init
-    mkdir /firmware 0771 system system
-    mkdir /bt_firmware 0771 system system
-    mkdir /dsp 0771 media media
 
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
@@ -122,26 +119,6 @@ on boot
     chown system system /persist/speccfg/vendor_persist.prop
     chown system system /persist/speccfg/submask
     chown system system /persist/speccfg/partition
-    chmod 0644 /dev/goodix_fp
-    chown system system /dev/goodix_fp
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
-    chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/hw_reset
-    chown system system /sys/bus/platform/devices/soc:fpc1020/hw_reset
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/irq
-    chown system system /sys/bus/platform/devices/soc:fpc1020/irq
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/regulator_enable
-    chown system system /sys/bus/platform/devices/soc:fpc1020/regulator_enable
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/device_prepare
-    chown system system /sys/bus/platform/devices/soc:fpc1020/device_prepare
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/clk_enable
-    chown system system /sys/bus/platform/devices/soc:fpc1020/clk_enable
-    chmod 0644 /sys/bus/platform/devices/soc:fpc1020/pinctl_set
-    chown system system /sys/bus/platform/devices/soc:fpc1020/pinctl_set
-
-    # Pocket Mode
-    chmod 0600 /proc/fingerprint/suspend
-    chown system system /proc/fingerprint/suspend
 
 on property:sys.boot_completed=1
     # Set BFQ I/O scheduler
@@ -166,11 +143,6 @@ service per_proxy /vendor/bin/pm-proxy
     user system
     group system
     disabled
-
-service ifaad /system/bin/ifaad
-    class late_start
-    user  system
-    group system
 
 on property:init.svc.per_mgr=running
     start per_proxy
@@ -502,6 +474,3 @@ service smcinvoked /system/bin/smcinvoked
    class main
    user system
    group system
-
-on property:ro.boot.fingerprint.id=*
-    setprop ro.hardware.fingerprint ${ro.boot.fingerprint.id}
