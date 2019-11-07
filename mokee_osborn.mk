@@ -45,6 +45,6 @@ BUILD_FINGERPRINT := Android/osborn/osborn:7.1.1/NGI77B/1560252258:user/dev-keys
 # Sign bootable images
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/testkey
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
 
 TARGET_VENDOR := Smartisan
